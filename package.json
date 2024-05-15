@@ -14,6 +14,7 @@
     "@astrojs/svelte": "^5.4.0",
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/roboto-flex": "^5.0.15",
+    "@tailwindcss/forms": "^0.5.7",
     "astro": "^4.8.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -60,6 +60,34 @@ export function svgForButton(button: Buttons): string {
   return svgMap[button];
 }
 
+export function sequenceSvgForButton(button: Buttons): string {
+  const svgMap: { [key in Buttons]: string } = {
+    [Buttons.downBack]: "1-lg.svg",
+    [Buttons.down]: "2-lg.svg",
+    [Buttons.downForward]: "3-lg.svg",
+    [Buttons.back]: "4-lg.svg",
+    [Buttons.neutral]: "5-lg.svg",
+    [Buttons.forward]: "6-lg.svg",
+    [Buttons.upBack]: "7-lg.svg",
+    [Buttons.up]: "8-lg.svg",
+    [Buttons.upForward]: "9-lg.svg",
+    [Buttons.light]: "L.svg",
+    [Buttons.medium]: "M.svg",
+    [Buttons.heavy]: "H.svg",
+    [Buttons.special1]: "S1.svg",
+    [Buttons.special2]: "S2.svg",
+    [Buttons.tag]: "tag.svg",
+    [Buttons.dash]: "dash.svg",
+    [Buttons.parry]: "parry.svg",
+    [Buttons.then]: "then-lg.svg",
+    [Buttons.or]: "or-lg.svg",
+    [Buttons.and]: "plus-lg.svg",
+    [Buttons.hold]: "hold.svg",
+  };
+
+  return svgMap[button];
+}
+
 const shortCodeMap: { [key in Buttons]: string } = {
   [Buttons.downBack]: "1",
   [Buttons.down]: "2",

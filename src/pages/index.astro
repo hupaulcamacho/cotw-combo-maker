@@ -1,12 +1,20 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import Notation from '@components/Notation.svelte';
+import Layout from "@layouts/Layout.astro";
+import Notation from "@components/ComboMaker.svelte";
 ---
 
 <Layout title="2XKO Notation">
-  <main>
-    <h1 class="text-red-100">2XKO</h1>
-
+  <main class="mx-auto max-w-screen-md px-4">
+    <h1 class="mb-4 mt-10 text-4xl tracking-wider text-slate-200">
+      <span class="text-lime-400">2XKO</span> Combo Maker
+    </h1>
+    <p class="mb-2 font-mono text-sm text-slate-500">
+      Create 2XKO combos and share them as a URL, plain text with multiple
+      notations, emoji, or even image.
+    </p>
+    <p class="mb-10 font-mono text-sm text-slate-500">
+      2XKOのコンボを作成し、URL、テキスト、絵文字、または画像として共有しましょう。
+    </p>
     <Notation client:load />
   </main>
 </Layout>
