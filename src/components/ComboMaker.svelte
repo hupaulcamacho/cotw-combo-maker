@@ -1,20 +1,43 @@
 <script lang="ts">
   import html2canvas from "html2canvas";
+  import { onMount } from "svelte";
   import {
     Buttons,
     svgForButton,
     shortCodeForButton,
     sequenceSvgForButton,
+    buttonForShortCode,
+    numberNotationForButton,
+    letterNotationForButton,
+    unicodeNotationForButton,
   } from "@lib/types";
   import type { Combo } from "@lib/types";
 
-  const buttons = Object.values(Buttons);
+  let textModes = [
+    { id: 1, text: `URL` },
+    { id: 2, text: `Text (236)` },
+    { id: 3, text: `Text (QCF)` },
+    { id: 4, text: `Emoji` },
+  ];
 
   let combo: Combo = {
     characterId: 0,
     gameVersion: "1.0.0",
     sequence: [],
   };
+
+  onMount(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const comboQuery = urlParams.get("combo");
+    if (comboQuery) {
+      const decodedCombo = atob(comboQuery);
+      const sequence = decodedCombo.split("");
+      combo.sequence = sequence.map((button) => buttonForShortCode(button));
+    }
+  });
+
+  $: disableActions = combo.sequence.length === 0;
+  let selectedTextMode = 1;
 
   function add(button: Buttons) {
     combo.sequence = [...combo.sequence, button];
@@ -24,6 +47,42 @@
     navigator.clipboard.writeText(
       combo.sequence.map(shortCodeForButton).join(""),
     );
+  }
+
+  function copyUrl(): string {
+    const url = new URL(window.location.href);
+    url.searchParams.set(
+      "combo",
+      btoa(combo.sequence.map(shortCodeForButton).join("")),
+    );
+    return url.toString();
+  }
+
+  function copyAsText() {
+    let text = "";
+    switch (selectedTextMode) {
+      case 1:
+        text = copyUrl();
+        break;
+      case 2:
+        text = combo.sequence
+          .map((button) => numberNotationForButton(button))
+          .join(" ");
+        break;
+      case 3:
+        text = combo.sequence
+          .map((button) => letterNotationForButton(button))
+          .join(" ");
+        break;
+      case 4:
+        text = combo.sequence
+          .map((button) => unicodeNotationForButton(button))
+          .join("");
+        break;
+    }
+
+    navigator.clipboard.writeText(text);
+    alert(`Copied to clipboard!\n\n${text}`);
   }
 
   function copyAsImage() {
@@ -38,6 +97,15 @@
       a.download = "combo.png";
       a.click();
     });
+  }
+
+  function undo() {
+    if (combo.sequence.length === 0) return;
+    combo.sequence = combo.sequence.slice(0, -1);
+  }
+
+  function clearAll() {
+    combo.sequence = [];
   }
 </script>
 
@@ -315,36 +383,54 @@
     <div class="flex gap-2">
       <button
         type="button"
-        class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95"
-        on:click={copyShortCode}
+        class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+        on:click={undo}
+        disabled={disableActions}
       >
-        Copy as <span class="text-lime-400">text</span>
+        Undo
+      </button>
+      <button
+        type="button"
+        class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+        on:click={clearAll}
+        disabled={disableActions}
+      >
+        Clear All
+      </button>
+    </div>
+
+    <div class="flex gap-2">
+      <button
+        type="button"
+        class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+        on:click={copyAsText}
+        disabled={disableActions}
+      >
+        Copy as
       </button>
       <div>
         <select
           id="location"
           name="location"
-          class="block w-full h-full bg-transparent rounded-md border-0 ring-2 ring-inset ring-slate-700 focus:ring-2 focus:ring-indigo-600"
+          class="block w-full text-lime-400 h-full bg-transparent rounded-md border-0 ring-2 ring-inset ring-slate-700 focus:ring-2 focus:ring-indigo-600"
+          bind:value={selectedTextMode}
         >
-          <option>236</option>
-          <option selected>QCF</option>
+          {#each textModes as mode}
+            <option value={mode.id} selected={mode.id === selectedTextMode}
+              >{mode.text}</option
+            >
+          {/each}
         </select>
       </div>
     </div>
 
     <button
       type="button"
-      class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95"
-      on:click={copyShortCode}
-    >
-      Copy as <span class="text-lime-400">emoji</span>
-    </button>
-    <button
-      type="button"
-      class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95"
+      class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
       on:click={copyAsImage}
+      disabled={disableActions}
     >
-      Export as <span class="text-lime-400">image</span>
+      Save as <span class="text-lime-400">image</span>
     </button>
   </div>
 </div>

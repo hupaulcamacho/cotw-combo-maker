@@ -5,6 +5,8 @@ interface Props {
   title: string;
 }
 
+let year = new Date().getFullYear();
+
 const { title } = Astro.props;
 ---
 
@@ -25,11 +27,14 @@ const { title } = Astro.props;
       <slot />
     </div>
     <footer
-      class="mx-auto my-10 max-w-md px-8 text-center font-mono text-xs text-slate-700"
+      class="mx-auto my-10 max-w-lg px-8 text-center font-mono text-xs text-slate-700"
     >
-      THE 2XKO NAME, CHARACTER NAMES, AND MOVE NAMES ARE ALL REGISTERED
-      TRADEMARKS OR TRADEMARKS OF RIOT GAMES, INC. COMBOLAB IS NOT AFFILIATED
-      WITH, ENDORSED, SPONSORED, OR SPECIFICALLY APPROVED RIOT GAMES, INC.
+      The 2XKO name is a registered trademark or trademark of Riot Games, Inc.
+      Combolab is not affiliated with, endorsed, sponsored, or specifically
+      approved Riot Games, Inc.
+      <br />
+      <br />
+      Four Rays © {year} — All rights reserved.
     </footer>
   </body>
 </html>
