@@ -1,4 +1,5 @@
 <script lang="ts">
+  import html2canvas from "html2canvas";
   import {
     Buttons,
     svgForButton,
@@ -24,10 +25,25 @@
       combo.sequence.map(shortCodeForButton).join(""),
     );
   }
+
+  function copyAsImage() {
+    let combo = document.querySelector("#combo") as HTMLElement;
+    html2canvas(combo, {
+      backgroundColor: null,
+      windowWidth: 300,
+    }).then((canvas) => {
+      const dataUrl = canvas.toDataURL("image/png");
+      const a = document.createElement("a");
+      a.href = dataUrl;
+      a.download = "combo.png";
+      a.click();
+    });
+  }
 </script>
 
 <div
   class="flex flex-wrap items-start content-start gap-2 p-4 border rounded-lg border-slate-800 bg-slate-900 min-h-60"
+  id="combo"
 >
   {#each combo.sequence as button}
     <img
@@ -326,9 +342,9 @@
     <button
       type="button"
       class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95"
-      on:click={copyShortCode}
+      on:click={copyAsImage}
     >
-      Copy as <span class="text-lime-400">image</span>
+      Export as <span class="text-lime-400">image</span>
     </button>
   </div>
 </div>

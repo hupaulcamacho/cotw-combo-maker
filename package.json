@@ -16,6 +16,7 @@
     "@fontsource-variable/roboto-flex": "^5.0.15",
     "@tailwindcss/forms": "^0.5.7",
     "astro": "^4.8.3",
+    "html2canvas": "^1.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "svelte": "^4.2.17",
