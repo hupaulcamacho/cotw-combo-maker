@@ -1,4 +1,4 @@
-# 2XKO Notation
+# 2XKO Combo Maker
 
 This project was sparked after seeing [this
 thread](https://x.com/play2xko/status/1787633824752455959?s=61) on Twitter.
