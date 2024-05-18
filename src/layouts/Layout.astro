@@ -7,6 +7,9 @@ interface Props {
 
 let year = new Date().getFullYear();
 
+let description =
+  "Create 2XKO combos and share them as a URL, plain text with multiple notations, emoji, or even image. 2XKOのコンボを入力し、URL、文字、絵文字、または画像として共有しましょう！";
+
 const { title } = Astro.props;
 ---
 
@@ -16,9 +19,45 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta property="og:image" content="/cover.jpg" />
+    <meta property="twitter:image" content="/cover.jpg" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png?v=2"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png?v=2"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png?v=2"
+    />
+    <link rel="shortcut icon" href="/favicon.ico?v=2" />
+    <meta name="apple-mobile-web-app-title" content="2XKO Combo Maker" />
+    <meta name="application-name" content="2XKO Combo Maker" />
+    <meta name="msapplication-TileColor" content="#D5F379" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
   </head>
   <body
     class="flex min-h-screen flex-col border-t-8 border-lime-400 bg-black text-white"
