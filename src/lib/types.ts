@@ -139,8 +139,8 @@ const numberNotationMap: { [key in Buttons]: string } = {
   [Buttons.dash]: "D",
   [Buttons.parry]: "P",
   [Buttons.then]: " > ",
-  [Buttons.or]: " | ",
-  [Buttons.and]: " + ",
+  [Buttons.or]: "|",
+  [Buttons.and]: "+",
   [Buttons.hold]: "[Hold]",
 };
 
@@ -187,8 +187,8 @@ const letterNotationMap: { [key in Buttons]: string } = {
   [Buttons.dash]: "D",
   [Buttons.parry]: "P",
   [Buttons.then]: " > ",
-  [Buttons.or]: " | ",
-  [Buttons.and]: " + ",
+  [Buttons.or]: "|",
+  [Buttons.and]: "+",
   [Buttons.hold]: "[Hold]",
 };
 

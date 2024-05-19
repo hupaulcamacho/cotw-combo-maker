@@ -30,7 +30,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const comboQuery = urlParams.get("combo");
     if (comboQuery) {
-      const decodedCombo = atob(comboQuery);
+      const decodedCombo = urlSafeBase64Decode(comboQuery);
       const sequence = decodedCombo.split("");
       combo.sequence = sequence.map((button) => buttonForShortCode(button));
     }
@@ -49,30 +49,42 @@
     );
   }
 
-  function copyUrl(): string {
+  function publicUrl(): string {
     const url = new URL(window.location.href);
-    url.searchParams.set(
-      "combo",
-      btoa(combo.sequence.map(shortCodeForButton).join("")),
-    );
+    const shortCode = combo.sequence.map(shortCodeForButton).join("");
+    url.searchParams.set("combo", urlSafeBase64Encode(shortCode));
     return url.toString();
+  }
+
+  function urlSafeBase64Encode(str: string): string {
+    let encoded = btoa(str);
+    return encoded.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+
+  function urlSafeBase64Decode(encoded: string): string {
+    let padded = encoded.replace(/-/g, "+").replace(/_/g, "/");
+    // Add padding back if necessary
+    while (padded.length % 4) {
+      padded += "=";
+    }
+    return atob(padded);
   }
 
   function copyAsText() {
     let text = "";
     switch (selectedTextMode) {
       case 1:
-        text = copyUrl();
+        text = publicUrl();
         break;
       case 2:
         text = combo.sequence
           .map((button) => numberNotationForButton(button))
-          .join(" ");
+          .join("");
         break;
       case 3:
         text = combo.sequence
           .map((button) => letterNotationForButton(button))
-          .join(" ");
+          .join("");
         break;
       case 4:
         text = combo.sequence
@@ -82,6 +94,11 @@
     }
 
     navigator.clipboard.writeText(text);
+
+    if (selectedTextMode === 1) {
+      window.location.href = text;
+    }
+
     alert(`Copied to clipboard!\n\n${text}`);
   }
 
