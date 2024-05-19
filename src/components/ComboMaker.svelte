@@ -99,11 +99,13 @@
       selectedTextMode !== 1
         ? text
         : "A public URL to view this combo has been generated.";
+
+    if (selectedTextMode === 1) {
+      history.pushState(null, "", publicUrl());
+    }
+
     setTimeout(() => {
       alertText = "";
-      if (selectedTextMode === 1) {
-        window.location.href = text;
-      }
     }, 5000);
   }
 
