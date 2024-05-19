@@ -2,7 +2,7 @@
   import html2canvas from "html2canvas";
   import { onMount } from "svelte";
   import {
-    Buttons,
+    Glyph,
     svgForButton,
     shortCodeForButton,
     sequenceSvgForButton,
@@ -39,14 +39,8 @@
   $: disableActions = combo.sequence.length === 0;
   let selectedTextMode = 1;
 
-  function add(button: Buttons) {
-    combo.sequence = [...combo.sequence, button];
-  }
-
-  function copyShortCode() {
-    navigator.clipboard.writeText(
-      combo.sequence.map(shortCodeForButton).join(""),
-    );
+  function add(glyph: Glyph) {
+    combo.sequence = [...combo.sequence, glyph];
   }
 
   function publicUrl(): string {
@@ -143,108 +137,104 @@
   <div class="grid grid-cols-3 grid-rows-3 gap-2 max-w-36">
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.upBack)}
+        on:click={() => add(Glyph.upBack)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.upBack)}`}
-          alt={Buttons.upBack}
+          src={`/${svgForButton(Glyph.upBack)}`}
+          alt={Glyph.upBack}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.up)}
+        on:click={() => add(Glyph.up)}
+        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+      >
+        <img src={`/${svgForButton(Glyph.up)}`} alt={Glyph.up} class="w-10" />
+      </button>
+    </div>
+    <div class="flex items-center justify-center">
+      <button
+        on:click={() => add(Glyph.upForward)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.up)}`}
-          alt={Buttons.up}
+          src={`/${svgForButton(Glyph.upForward)}`}
+          alt={Glyph.upForward}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.upForward)}
+        on:click={() => add(Glyph.back)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.upForward)}`}
-          alt={Buttons.upForward}
+          src={`/${svgForButton(Glyph.back)}`}
+          alt={Glyph.back}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.back)}
+        on:click={() => add(Glyph.neutral)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.back)}`}
-          alt={Buttons.back}
+          src={`/${svgForButton(Glyph.neutral)}`}
+          alt={Glyph.neutral}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.neutral)}
+        on:click={() => add(Glyph.forward)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.neutral)}`}
-          alt={Buttons.neutral}
+          src={`/${svgForButton(Glyph.forward)}`}
+          alt={Glyph.forward}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.forward)}
+        on:click={() => add(Glyph.downBack)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.forward)}`}
-          alt={Buttons.forward}
+          src={`/${svgForButton(Glyph.downBack)}`}
+          alt={Glyph.downBack}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.downBack)}
+        on:click={() => add(Glyph.down)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.downBack)}`}
-          alt={Buttons.downBack}
+          src={`/${svgForButton(Glyph.down)}`}
+          alt={Glyph.down}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.down)}
+        on:click={() => add(Glyph.downForward)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.down)}`}
-          alt={Buttons.down}
-          class="w-10"
-        />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Buttons.downForward)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <img
-          src={`/${svgForButton(Buttons.downForward)}`}
-          alt={Buttons.downForward}
+          src={`/${svgForButton(Glyph.downForward)}`}
+          alt={Glyph.downForward}
           class="w-10"
         />
       </button>
@@ -253,146 +243,134 @@
   <div class="grid grid-cols-4 grid-rows-3 gap-2">
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.light)}
+        on:click={() => add(Glyph.light)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.light)}`}
-          alt={Buttons.light}
+          src={`/${svgForButton(Glyph.light)}`}
+          alt={Glyph.light}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.medium)}
+        on:click={() => add(Glyph.medium)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.medium)}`}
-          alt={Buttons.medium}
+          src={`/${svgForButton(Glyph.medium)}`}
+          alt={Glyph.medium}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.heavy)}
+        on:click={() => add(Glyph.heavy)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.heavy)}`}
-          alt={Buttons.heavy}
+          src={`/${svgForButton(Glyph.heavy)}`}
+          alt={Glyph.heavy}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.tag)}
+        on:click={() => add(Glyph.tag)}
+        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+      >
+        <img src={`/${svgForButton(Glyph.tag)}`} alt={Glyph.tag} class="w-10" />
+      </button>
+    </div>
+    <div class="flex items-center justify-center">
+      <button
+        on:click={() => add(Glyph.special1)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.tag)}`}
-          alt={Buttons.tag}
+          src={`/${svgForButton(Glyph.special1)}`}
+          alt={Glyph.special1}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.special1)}
+        on:click={() => add(Glyph.special2)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.special1)}`}
-          alt={Buttons.special1}
+          src={`/${svgForButton(Glyph.special2)}`}
+          alt={Glyph.special2}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.special2)}
+        on:click={() => add(Glyph.dash)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.special2)}`}
-          alt={Buttons.special2}
+          src={`/${svgForButton(Glyph.dash)}`}
+          alt={Glyph.dash}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.dash)}
+        on:click={() => add(Glyph.parry)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.dash)}`}
-          alt={Buttons.dash}
+          src={`/${svgForButton(Glyph.parry)}`}
+          alt={Glyph.parry}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.parry)}
+        on:click={() => add(Glyph.and)}
+        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+      >
+        <img src={`/${svgForButton(Glyph.and)}`} alt={Glyph.and} class="w-10" />
+      </button>
+    </div>
+    <div class="flex items-center justify-center">
+      <button
+        on:click={() => add(Glyph.then)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.parry)}`}
-          alt={Buttons.parry}
+          src={`/${svgForButton(Glyph.then)}`}
+          alt={Glyph.then}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.and)}
+        on:click={() => add(Glyph.hold)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
-          src={`/${svgForButton(Buttons.and)}`}
-          alt={Buttons.and}
+          src={`/${svgForButton(Glyph.hold)}`}
+          alt={Glyph.hold}
           class="w-10"
         />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Buttons.then)}
+        on:click={() => add(Glyph.or)}
         class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
-        <img
-          src={`/${svgForButton(Buttons.then)}`}
-          alt={Buttons.then}
-          class="w-10"
-        />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Buttons.hold)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <img
-          src={`/${svgForButton(Buttons.hold)}`}
-          alt={Buttons.hold}
-          class="w-10"
-        />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Buttons.or)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <img
-          src={`/${svgForButton(Buttons.or)}`}
-          alt={Buttons.or}
-          class="w-10"
-        />
+        <img src={`/${svgForButton(Glyph.or)}`} alt={Glyph.or} class="w-10" />
       </button>
     </div>
   </div>

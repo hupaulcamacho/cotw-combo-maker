@@ -5,10 +5,10 @@ export interface Combo {
   characterId: number;
   damage?: number;
   hitCount?: number;
-  sequence: Buttons[];
+  sequence: Glyph[];
 }
 
-export enum Buttons {
+export enum Glyph {
   downBack = "1",
   down = "2",
   downForward = "3",
@@ -64,176 +64,176 @@ export const plusUnicode = "\u{FF0B}";
 export const thenUnicode = "\u{2000}\u{232A}";
 export const orUnicode = halfWidthSpace + "|" + halfWidthSpace;
 
-export function svgForButton(button: Buttons): string {
-  const svgMap: { [key in Buttons]: string } = {
-    [Buttons.downBack]: "1.svg",
-    [Buttons.down]: "2.svg",
-    [Buttons.downForward]: "3.svg",
-    [Buttons.back]: "4.svg",
-    [Buttons.neutral]: "5.svg",
-    [Buttons.forward]: "6.svg",
-    [Buttons.upBack]: "7.svg",
-    [Buttons.up]: "8.svg",
-    [Buttons.upForward]: "9.svg",
-    [Buttons.light]: "L.svg",
-    [Buttons.medium]: "M.svg",
-    [Buttons.heavy]: "H.svg",
-    [Buttons.special1]: "S1.svg",
-    [Buttons.special2]: "S2.svg",
-    [Buttons.tag]: "tag.svg",
-    [Buttons.dash]: "dash.svg",
-    [Buttons.parry]: "parry.svg",
-    [Buttons.then]: "then.svg",
-    [Buttons.or]: "or.svg",
-    [Buttons.and]: "plus.svg",
-    [Buttons.hold]: "hold.svg",
+export function svgForButton(glyph: Glyph): string {
+  const svgMap: { [key in Glyph]: string } = {
+    [Glyph.downBack]: "1.svg",
+    [Glyph.down]: "2.svg",
+    [Glyph.downForward]: "3.svg",
+    [Glyph.back]: "4.svg",
+    [Glyph.neutral]: "5.svg",
+    [Glyph.forward]: "6.svg",
+    [Glyph.upBack]: "7.svg",
+    [Glyph.up]: "8.svg",
+    [Glyph.upForward]: "9.svg",
+    [Glyph.light]: "L.svg",
+    [Glyph.medium]: "M.svg",
+    [Glyph.heavy]: "H.svg",
+    [Glyph.special1]: "S1.svg",
+    [Glyph.special2]: "S2.svg",
+    [Glyph.tag]: "tag.svg",
+    [Glyph.dash]: "dash.svg",
+    [Glyph.parry]: "parry.svg",
+    [Glyph.then]: "then.svg",
+    [Glyph.or]: "or.svg",
+    [Glyph.and]: "plus.svg",
+    [Glyph.hold]: "hold.svg",
   };
 
-  return svgMap[button];
+  return svgMap[glyph];
 }
 
-export function sequenceSvgForButton(button: Buttons): string {
-  const svgMap: { [key in Buttons]: string } = {
-    [Buttons.downBack]: "1-lg.svg",
-    [Buttons.down]: "2-lg.svg",
-    [Buttons.downForward]: "3-lg.svg",
-    [Buttons.back]: "4-lg.svg",
-    [Buttons.neutral]: "5-lg.svg",
-    [Buttons.forward]: "6-lg.svg",
-    [Buttons.upBack]: "7-lg.svg",
-    [Buttons.up]: "8-lg.svg",
-    [Buttons.upForward]: "9-lg.svg",
-    [Buttons.light]: "L.svg",
-    [Buttons.medium]: "M.svg",
-    [Buttons.heavy]: "H.svg",
-    [Buttons.special1]: "S1.svg",
-    [Buttons.special2]: "S2.svg",
-    [Buttons.tag]: "tag.svg",
-    [Buttons.dash]: "dash.svg",
-    [Buttons.parry]: "parry.svg",
-    [Buttons.then]: "then-lg.svg",
-    [Buttons.or]: "or-lg.svg",
-    [Buttons.and]: "plus-lg.svg",
-    [Buttons.hold]: "hold.svg",
+export function sequenceSvgForButton(glyph: Glyph): string {
+  const svgMap: { [key in Glyph]: string } = {
+    [Glyph.downBack]: "1-lg.svg",
+    [Glyph.down]: "2-lg.svg",
+    [Glyph.downForward]: "3-lg.svg",
+    [Glyph.back]: "4-lg.svg",
+    [Glyph.neutral]: "5-lg.svg",
+    [Glyph.forward]: "6-lg.svg",
+    [Glyph.upBack]: "7-lg.svg",
+    [Glyph.up]: "8-lg.svg",
+    [Glyph.upForward]: "9-lg.svg",
+    [Glyph.light]: "L.svg",
+    [Glyph.medium]: "M.svg",
+    [Glyph.heavy]: "H.svg",
+    [Glyph.special1]: "S1.svg",
+    [Glyph.special2]: "S2.svg",
+    [Glyph.tag]: "tag.svg",
+    [Glyph.dash]: "dash.svg",
+    [Glyph.parry]: "parry.svg",
+    [Glyph.then]: "then-lg.svg",
+    [Glyph.or]: "or-lg.svg",
+    [Glyph.and]: "plus-lg.svg",
+    [Glyph.hold]: "hold.svg",
   };
 
-  return svgMap[button];
+  return svgMap[glyph];
 }
 
-const numberNotationMap: { [key in Buttons]: string } = {
-  [Buttons.downBack]: "1",
-  [Buttons.down]: "2",
-  [Buttons.downForward]: "3",
-  [Buttons.back]: "4",
-  [Buttons.neutral]: "5",
-  [Buttons.forward]: "6",
-  [Buttons.upBack]: "7",
-  [Buttons.up]: "8",
-  [Buttons.upForward]: "9",
-  [Buttons.light]: "L",
-  [Buttons.medium]: "M",
-  [Buttons.heavy]: "H",
-  [Buttons.special1]: "S1",
-  [Buttons.special2]: "S2",
-  [Buttons.tag]: "T",
-  [Buttons.dash]: "D",
-  [Buttons.parry]: "P",
-  [Buttons.then]: " > ",
-  [Buttons.or]: "|",
-  [Buttons.and]: "+",
-  [Buttons.hold]: "[Hold]",
+const numberNotationMap: { [key in Glyph]: string } = {
+  [Glyph.downBack]: "1",
+  [Glyph.down]: "2",
+  [Glyph.downForward]: "3",
+  [Glyph.back]: "4",
+  [Glyph.neutral]: "5",
+  [Glyph.forward]: "6",
+  [Glyph.upBack]: "7",
+  [Glyph.up]: "8",
+  [Glyph.upForward]: "9",
+  [Glyph.light]: "L",
+  [Glyph.medium]: "M",
+  [Glyph.heavy]: "H",
+  [Glyph.special1]: "S1",
+  [Glyph.special2]: "S2",
+  [Glyph.tag]: "T",
+  [Glyph.dash]: "D",
+  [Glyph.parry]: "P",
+  [Glyph.then]: " > ",
+  [Glyph.or]: "|",
+  [Glyph.and]: "+",
+  [Glyph.hold]: "[Hold]",
 };
 
-const shortCodeMap: { [key in Buttons]: string } = {
-  [Buttons.downBack]: "1",
-  [Buttons.down]: "2",
-  [Buttons.downForward]: "3",
-  [Buttons.back]: "4",
-  [Buttons.neutral]: "5",
-  [Buttons.forward]: "6",
-  [Buttons.upBack]: "7",
-  [Buttons.up]: "8",
-  [Buttons.upForward]: "9",
-  [Buttons.light]: "L",
-  [Buttons.medium]: "M",
-  [Buttons.heavy]: "H",
-  [Buttons.special1]: "X",
-  [Buttons.special2]: "Y",
-  [Buttons.tag]: "T",
-  [Buttons.dash]: "D",
-  [Buttons.parry]: "P",
-  [Buttons.then]: ">",
-  [Buttons.or]: "|",
-  [Buttons.and]: "+",
-  [Buttons.hold]: "h",
+const shortCodeMap: { [key in Glyph]: string } = {
+  [Glyph.downBack]: "1",
+  [Glyph.down]: "2",
+  [Glyph.downForward]: "3",
+  [Glyph.back]: "4",
+  [Glyph.neutral]: "5",
+  [Glyph.forward]: "6",
+  [Glyph.upBack]: "7",
+  [Glyph.up]: "8",
+  [Glyph.upForward]: "9",
+  [Glyph.light]: "L",
+  [Glyph.medium]: "M",
+  [Glyph.heavy]: "H",
+  [Glyph.special1]: "X",
+  [Glyph.special2]: "Y",
+  [Glyph.tag]: "T",
+  [Glyph.dash]: "D",
+  [Glyph.parry]: "P",
+  [Glyph.then]: ">",
+  [Glyph.or]: "|",
+  [Glyph.and]: "+",
+  [Glyph.hold]: "h",
 };
 
-const letterNotationMap: { [key in Buttons]: string } = {
-  [Buttons.downBack]: "db",
-  [Buttons.down]: "d",
-  [Buttons.downForward]: "df",
-  [Buttons.back]: "b",
-  [Buttons.neutral]: "n",
-  [Buttons.forward]: "f",
-  [Buttons.upBack]: "ub",
-  [Buttons.up]: "u",
-  [Buttons.upForward]: "uf",
-  [Buttons.light]: "L",
-  [Buttons.medium]: "M",
-  [Buttons.heavy]: "H",
-  [Buttons.special1]: "S1",
-  [Buttons.special2]: "S2",
-  [Buttons.tag]: "T",
-  [Buttons.dash]: "D",
-  [Buttons.parry]: "P",
-  [Buttons.then]: " > ",
-  [Buttons.or]: "|",
-  [Buttons.and]: "+",
-  [Buttons.hold]: "[Hold]",
+const letterNotationMap: { [key in Glyph]: string } = {
+  [Glyph.downBack]: "db",
+  [Glyph.down]: "d",
+  [Glyph.downForward]: "df",
+  [Glyph.back]: "b",
+  [Glyph.neutral]: "n",
+  [Glyph.forward]: "f",
+  [Glyph.upBack]: "ub",
+  [Glyph.up]: "u",
+  [Glyph.upForward]: "uf",
+  [Glyph.light]: "L",
+  [Glyph.medium]: "M",
+  [Glyph.heavy]: "H",
+  [Glyph.special1]: "S1",
+  [Glyph.special2]: "S2",
+  [Glyph.tag]: "T",
+  [Glyph.dash]: "D",
+  [Glyph.parry]: "P",
+  [Glyph.then]: " > ",
+  [Glyph.or]: "|",
+  [Glyph.and]: "+",
+  [Glyph.hold]: "[Hold]",
 };
 
-const unicodeNotationMap: { [key in Buttons]: string } = {
-  [Buttons.downBack]: arrow1Unicode,
-  [Buttons.down]: arrow2Unicode,
-  [Buttons.downForward]: arrow3Unicode,
-  [Buttons.back]: arrow4Unicode,
-  [Buttons.neutral]: arrow5Unicode,
-  [Buttons.forward]: arrow6Unicode,
-  [Buttons.upBack]: arrow7Unicode,
-  [Buttons.up]: arrow8Unicode,
-  [Buttons.upForward]: arrow9Unicode,
-  [Buttons.light]: lightUnicode,
-  [Buttons.medium]: mediumUnicode,
-  [Buttons.heavy]: heavyUnicode,
-  [Buttons.special1]: special1Unicode,
-  [Buttons.special2]: special2Unicode,
-  [Buttons.tag]: tagUnicode,
-  [Buttons.dash]: dashUnicode,
-  [Buttons.parry]: parryUnicode,
-  [Buttons.then]: thenUnicode,
-  [Buttons.or]: orUnicode,
-  [Buttons.and]: plusUnicode,
-  [Buttons.hold]: "[Hold]",
+const unicodeNotationMap: { [key in Glyph]: string } = {
+  [Glyph.downBack]: arrow1Unicode,
+  [Glyph.down]: arrow2Unicode,
+  [Glyph.downForward]: arrow3Unicode,
+  [Glyph.back]: arrow4Unicode,
+  [Glyph.neutral]: arrow5Unicode,
+  [Glyph.forward]: arrow6Unicode,
+  [Glyph.upBack]: arrow7Unicode,
+  [Glyph.up]: arrow8Unicode,
+  [Glyph.upForward]: arrow9Unicode,
+  [Glyph.light]: lightUnicode,
+  [Glyph.medium]: mediumUnicode,
+  [Glyph.heavy]: heavyUnicode,
+  [Glyph.special1]: special1Unicode,
+  [Glyph.special2]: special2Unicode,
+  [Glyph.tag]: tagUnicode,
+  [Glyph.dash]: dashUnicode,
+  [Glyph.parry]: parryUnicode,
+  [Glyph.then]: thenUnicode,
+  [Glyph.or]: orUnicode,
+  [Glyph.and]: plusUnicode,
+  [Glyph.hold]: "[Hold]",
 };
 
-export function numberNotationForButton(button: Buttons): string {
+export function numberNotationForButton(button: Glyph): string {
   return numberNotationMap[button];
 }
 
-export function letterNotationForButton(button: Buttons): string {
+export function letterNotationForButton(button: Glyph): string {
   return letterNotationMap[button];
 }
 
-export function unicodeNotationForButton(button: Buttons): string {
+export function unicodeNotationForButton(button: Glyph): string {
   return unicodeNotationMap[button];
 }
 
-export function shortCodeForButton(button: Buttons): string {
+export function shortCodeForButton(button: Glyph): string {
   return shortCodeMap[button];
 }
 
-export function buttonForShortCode(letter: string): Buttons {
+export function buttonForShortCode(letter: string): Glyph {
   return Object.keys(shortCodeMap).find(
-    (key) => shortCodeMap[key as Buttons] === letter,
-  ) as Buttons;
+    (key) => shortCodeMap[key as Glyph] === letter,
+  ) as Glyph;
 }
