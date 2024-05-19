@@ -92,34 +92,6 @@ export function svgForButton(glyph: Glyph): string {
   return svgMap[glyph];
 }
 
-export function sequenceSvgForButton(glyph: Glyph): string {
-  const svgMap: { [key in Glyph]: string } = {
-    [Glyph.downBack]: "1-lg.svg",
-    [Glyph.down]: "2-lg.svg",
-    [Glyph.downForward]: "3-lg.svg",
-    [Glyph.back]: "4-lg.svg",
-    [Glyph.neutral]: "5-lg.svg",
-    [Glyph.forward]: "6-lg.svg",
-    [Glyph.upBack]: "7-lg.svg",
-    [Glyph.up]: "8-lg.svg",
-    [Glyph.upForward]: "9-lg.svg",
-    [Glyph.light]: "L.svg",
-    [Glyph.medium]: "M.svg",
-    [Glyph.heavy]: "H.svg",
-    [Glyph.special1]: "S1.svg",
-    [Glyph.special2]: "S2.svg",
-    [Glyph.tag]: "tag.svg",
-    [Glyph.dash]: "dash.svg",
-    [Glyph.parry]: "parry.svg",
-    [Glyph.then]: "then-lg.svg",
-    [Glyph.or]: "or-lg.svg",
-    [Glyph.and]: "plus-lg.svg",
-    [Glyph.hold]: "hold.svg",
-  };
-
-  return svgMap[glyph];
-}
-
 const numberNotationMap: { [key in Glyph]: string } = {
   [Glyph.downBack]: "1",
   [Glyph.down]: "2",

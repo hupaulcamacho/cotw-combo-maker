@@ -5,13 +5,13 @@
     Glyph,
     svgForButton,
     shortCodeForButton,
-    sequenceSvgForButton,
     buttonForShortCode,
     numberNotationForButton,
     letterNotationForButton,
     unicodeNotationForButton,
   } from "@lib/types";
   import type { Combo } from "@lib/types";
+  import GlyphComponent from "@components/glyphs/Glyph.svelte";
 
   let textModes = [
     { id: 1, text: `URL` },
@@ -111,6 +111,7 @@
 
   function copyAsImage() {
     let combo = document.querySelector("#combo") as HTMLElement;
+
     html2canvas(combo, {
       backgroundColor: null,
       windowWidth: 300,
@@ -134,15 +135,11 @@
 </script>
 
 <div
-  class="flex flex-wrap items-start content-start gap-2 p-4 border rounded-lg border-slate-800 bg-slate-900 min-h-60"
+  class="flex flex-wrap items-start content-start gap-1 p-4 border rounded-lg border-slate-800 bg-slate-900 min-h-60"
   id="combo"
 >
   {#each combo.sequence as button}
-    <img
-      src={`/${sequenceSvgForButton(button)}`}
-      alt={button}
-      class="h-8 sm:h-10"
-    />
+    <GlyphComponent shortCode={shortCodeForButton(button)} />
   {/each}
 </div>
 

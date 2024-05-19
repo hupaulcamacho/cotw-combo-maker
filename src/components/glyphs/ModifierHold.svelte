@@ -1,8 +1,14 @@
-<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+<svg
+  class="h-8 sm:h-10"
+  viewBox="0 0 128 128"
+  xmlns="http://www.w3.org/2000/svg"
+>
   <g fill="none" fill-rule="evenodd">
     <circle cx="64" cy="64" r="48" stroke="#ffe183" stroke-width="8" />
     <path
       d="m73.7579036 47.3859091h14.6455332v33h-14.6455332v-11.9351585h-18.7348703v11.9351585h-14.6455331v-33h14.6455331v11.6023054h18.7348703z"
-      fill="#ffe183" fill-rule="nonzero" />
+      fill="#ffe183"
+      fill-rule="nonzero"
+    />
   </g>
 </svg>
