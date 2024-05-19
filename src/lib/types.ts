@@ -140,7 +140,7 @@ const numberNotationMap: { [key in Glyph]: string } = {
   [Glyph.parry]: "P",
   [Glyph.then]: " > ",
   [Glyph.or]: "|",
-  [Glyph.and]: "+",
+  [Glyph.and]: ".",
   [Glyph.hold]: "[Hold]",
 };
 
@@ -188,7 +188,7 @@ const letterNotationMap: { [key in Glyph]: string } = {
   [Glyph.parry]: "P",
   [Glyph.then]: " > ",
   [Glyph.or]: "|",
-  [Glyph.and]: "+",
+  [Glyph.and]: ".",
   [Glyph.hold]: "[Hold]",
 };
 
