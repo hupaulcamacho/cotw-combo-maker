@@ -135,7 +135,7 @@
 </script>
 
 <div
-  class="flex flex-wrap items-start content-start gap-1 p-4 border rounded-lg border-slate-800 bg-slate-900 min-h-60"
+  class="flex flex-wrap items-start content-start gap-2 p-4 border rounded-lg border-slate-800 bg-slate-900 min-h-60"
   id="combo"
 >
   {#each combo.sequence as button}

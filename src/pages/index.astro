@@ -8,13 +8,18 @@ import Notation from "@components/ComboMaker.svelte";
     <h1 class="mb-4 mt-10 text-4xl tracking-wider text-slate-200">
       <span class="text-lime-400">2XKO</span> Combo Maker
     </h1>
-    <p class="mb-2 font-mono text-sm text-slate-500">
-      Create 2XKO combos and share them as a URL, plain text with multiple
-      notations, emoji, or even image.
-    </p>
-    <p class="mb-10 font-mono text-sm text-slate-500">
-      2XKOのコンボを入力し、URL、文字、絵文字、または画像として共有しましょう！
-    </p>
+    <div class="sm:flex">
+      <p class="mb-2 font-mono text-sm text-slate-500">
+        Create 2XKO combos and share them as a URL, plain text with multiple
+        notations, emoji, or even image.
+      </p>
+      <p
+        class="mb-10 border-slate-400 font-mono text-sm text-slate-500 sm:border-l sm:pl-2"
+      >
+        2XKOのコンボを入力し、URL、文字、絵文字、または画像として共有しましょう！
+      </p>
+    </div>
+
     <Notation client:load />
   </main>
 </Layout>

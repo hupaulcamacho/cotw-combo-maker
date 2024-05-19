@@ -1,10 +1,6 @@
-<svg
-  class="h-8 sm:h-10"
-  viewBox="0 0 80 128"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
+<svg class="h-8 sm:h-10" viewBox="0 0 80 128" xmlns="http://www.w3.org/2000/svg"
+  ><path
     d="m42.1190476 40 15.8809524 24-15.8809524 24h-20.1190476l15.8809524-24-15.8809524-24z"
-    fill="#878787"
-  />
-</svg>
+    fill="#4c5983"
+  /></svg
+>
