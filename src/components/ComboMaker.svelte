@@ -388,7 +388,7 @@
     <div class="flex gap-2">
       <button
         type="button"
-        class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="rounded-md p-2 border-2 flex-grow border-slate-700 enabled:hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 enabled:active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         on:click={undo}
         disabled={disableActions}
       >
@@ -396,7 +396,7 @@
       </button>
       <button
         type="button"
-        class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="rounded-md p-2 border-2 flex-grow border-slate-700 enabled:hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 enabled:active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         on:click={clearAll}
         disabled={disableActions}
       >
@@ -407,7 +407,7 @@
     <div class="flex gap-2">
       <button
         type="button"
-        class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="rounded-md p-2 border-2 flex-grow border-slate-700 enabled:hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 enabled:active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         on:click={copyAsText}
         disabled={disableActions}
       >
@@ -431,7 +431,7 @@
 
     <button
       type="button"
-      class="rounded-md p-2 border-2 flex-grow border-slate-700 hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+      class="rounded-md p-2 border-2 flex-grow border-slate-700 enabled:hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 enabled:active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
       on:click={copyAsImage}
       disabled={disableActions}
     >
