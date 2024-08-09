@@ -3,7 +3,7 @@
 This project was sparked after seeing [this
 thread](https://x.com/play2xko/status/1787633824752455959?s=61) on Twitter.
 
-Essentially the 2KXO team sahred a combo and many people expressed
+Essentially the 2KXO team shared a combo and many people expressed
 dissatisfaction with the notation used.
 
 ```plaintext
