@@ -13,6 +13,12 @@ export default {
           },
           ...defaultTheme.fontFamily.sans,
         ],
+        custom: [
+          "Roboto Flex Variable",
+          {
+            fontVariationSettings: '"wght" 400, "wdth" 151',
+          },
+        ],
       },
     },
   },

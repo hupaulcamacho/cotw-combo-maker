@@ -135,11 +135,24 @@
 </script>
 
 <div
-  class="flex flex-wrap items-start content-start gap-2 p-4 border rounded-lg border-slate-800 bg-slate-900 min-h-60"
+  class="flex flex-wrap items-start content-start gap-2.5 p-4 border rounded-lg border-slate-800 bg-slate-900 min-h-60"
   id="combo"
 >
+  {#if combo.sequence.length === 0}
+    <p
+      class="mb-10 border-slate-400 text-sm text-slate-500 opacity-80 font-custom text-center absolute"
+    >
+      Add notations using the buttons below…
+    </p>
+  {/if}
   {#each combo.sequence as button}
-    <GlyphComponent shortCode={shortCodeForButton(button)} />
+    {#if button === Glyph.and}
+      <div class="-ml-1.5 -mr-1.5">
+        <GlyphComponent shortCode="+" />
+      </div>
+    {:else}
+      <GlyphComponent shortCode={shortCodeForButton(button)} />
+    {/if}
   {/each}
 </div>
 
@@ -148,7 +161,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.upBack)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.upBack)}`}
@@ -160,7 +173,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.up)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img src={`/${svgForButton(Glyph.up)}`} alt={Glyph.up} class="w-10" />
       </button>
@@ -168,7 +181,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.upForward)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.upForward)}`}
@@ -180,7 +193,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.back)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.back)}`}
@@ -192,7 +205,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.neutral)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.neutral)}`}
@@ -204,7 +217,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.forward)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.forward)}`}
@@ -216,7 +229,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.downBack)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.downBack)}`}
@@ -228,7 +241,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.down)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.down)}`}
@@ -240,7 +253,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.downForward)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.downForward)}`}
@@ -254,7 +267,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.light)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.light)}`}
@@ -266,7 +279,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.medium)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.medium)}`}
@@ -278,7 +291,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.heavy)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.heavy)}`}
@@ -290,7 +303,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.tag)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img src={`/${svgForButton(Glyph.tag)}`} alt={Glyph.tag} class="w-10" />
       </button>
@@ -298,7 +311,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.special1)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.special1)}`}
@@ -310,7 +323,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.special2)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.special2)}`}
@@ -322,7 +335,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.dash)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.dash)}`}
@@ -334,7 +347,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.parry)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.parry)}`}
@@ -346,7 +359,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.and)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img src={`/${svgForButton(Glyph.and)}`} alt={Glyph.and} class="w-10" />
       </button>
@@ -354,7 +367,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.then)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.then)}`}
@@ -366,7 +379,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.hold)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img
           src={`/${svgForButton(Glyph.hold)}`}
@@ -378,7 +391,7 @@
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.or)}
-        class="rounded-full bg-white/10 shadow-sm hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
       >
         <img src={`/${svgForButton(Glyph.or)}`} alt={Glyph.or} class="w-10" />
       </button>
@@ -400,7 +413,7 @@
         on:click={clearAll}
         disabled={disableActions}
       >
-        Clear All
+        Reset Combo
       </button>
     </div>
 
