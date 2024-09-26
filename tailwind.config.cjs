@@ -6,19 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          "Roboto Flex Variable",
-          {
-            fontVariationSettings: '"wght" 1000 , "wdth" 151',
-          },
-          ...defaultTheme.fontFamily.sans,
-        ],
-        custom: [
-          "Roboto Flex Variable",
-          {
-            fontVariationSettings: '"wght" 400, "wdth" 151',
-          },
-        ],
+        display: ["Racing Sans One", ...defaultTheme.fontFamily.sans],
       },
     },
   },

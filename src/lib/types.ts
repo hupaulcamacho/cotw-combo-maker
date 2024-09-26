@@ -1,5 +1,3 @@
-// https://www.riotgames.com/en/news/play-2xko-evo-japan-2024
-
 export interface Combo {
   gameVersion: string;
   characterId: number;
@@ -18,14 +16,14 @@ export enum Glyph {
   upBack = "7",
   up = "8",
   upForward = "9",
-  light = "L",
-  medium = "M",
-  heavy = "H",
-  special1 = "S1",
-  special2 = "S2",
-  tag = "T",
-  dash = "Dash",
-  parry = "Parry",
+  lightPunch = "LP",
+  mediumPunch = "MP",
+  heavyPunch = "HP",
+  punch = "P",
+  lightKick = "LK",
+  mediumKick = "MK",
+  heavyKick = "HK",
+  kick = "K",
   then = ">",
   or = "|",
   and = "+",
@@ -36,11 +34,8 @@ export const halfWidthSpace = "\u{2009}";
 export const lightUnicode = "\u{1F15B}";
 export const mediumUnicode = "\u{1F15C}";
 export const heavyUnicode = "\u{1F157}";
-export const special1Unicode = "\u{24C8}\u{2780}";
-export const special2Unicode = "\u{24C8}\u{2781}";
-export const tagUnicode = "\u{1F163}";
-export const dashUnicode = "\u{1F153}";
-export const parryUnicode = "\u{1F15F}";
+export const punchUnicode = "\u{1F44A}";
+export const kickUnicode = "\u{1F45F}";
 export const direction1Unicode = "\u{2460}";
 export const direction2Unicode = "\u{2461}";
 export const direction3Unicode = "\u{2462}";
@@ -59,7 +54,6 @@ export const arrow6Unicode = "\u{27A1}\u{FE0F}";
 export const arrow7Unicode = "\u{2196}\u{FE0F}";
 export const arrow8Unicode = "\u{2B06}\u{FE0F}";
 export const arrow9Unicode = "\u{2197}\u{FE0F}";
-export const largeYellowCircleUnicode = "\u{1F7E1}";
 export const plusUnicode = "\u{FF0B}";
 export const thenUnicode = "\u{2000}\u{232A}";
 export const orUnicode = halfWidthSpace + "|" + halfWidthSpace;
@@ -75,14 +69,14 @@ export function svgForButton(glyph: Glyph): string {
     [Glyph.upBack]: "7.svg",
     [Glyph.up]: "8.svg",
     [Glyph.upForward]: "9.svg",
-    [Glyph.light]: "L.svg",
-    [Glyph.medium]: "M.svg",
-    [Glyph.heavy]: "H.svg",
-    [Glyph.special1]: "S1.svg",
-    [Glyph.special2]: "S2.svg",
-    [Glyph.tag]: "tag.svg",
-    [Glyph.dash]: "dash.svg",
-    [Glyph.parry]: "parry.svg",
+    [Glyph.lightPunch]: "LP.svg",
+    [Glyph.mediumPunch]: "MP.svg",
+    [Glyph.heavyPunch]: "HP.svg",
+    [Glyph.punch]: "P.svg",
+    [Glyph.lightKick]: "LK.svg",
+    [Glyph.mediumKick]: "MK.svg",
+    [Glyph.heavyKick]: "HK.svg",
+    [Glyph.kick]: "K.svg",
     [Glyph.then]: "then.svg",
     [Glyph.or]: "or.svg",
     [Glyph.and]: "plus.svg",
@@ -102,14 +96,14 @@ const numberNotationMap: { [key in Glyph]: string } = {
   [Glyph.upBack]: "7",
   [Glyph.up]: "8",
   [Glyph.upForward]: "9",
-  [Glyph.light]: "L",
-  [Glyph.medium]: "M",
-  [Glyph.heavy]: "H",
-  [Glyph.special1]: "S1",
-  [Glyph.special2]: "S2",
-  [Glyph.tag]: "T",
-  [Glyph.dash]: "D",
-  [Glyph.parry]: "P",
+  [Glyph.lightPunch]: "LP",
+  [Glyph.mediumPunch]: "MP",
+  [Glyph.heavyPunch]: "HP",
+  [Glyph.punch]: "P",
+  [Glyph.lightKick]: "LK",
+  [Glyph.mediumKick]: "MK",
+  [Glyph.heavyKick]: "HK",
+  [Glyph.kick]: "K",
   [Glyph.then]: " > ",
   [Glyph.or]: "|",
   [Glyph.and]: ".",
@@ -126,14 +120,14 @@ const shortCodeMap: { [key in Glyph]: string } = {
   [Glyph.upBack]: "7",
   [Glyph.up]: "8",
   [Glyph.upForward]: "9",
-  [Glyph.light]: "L",
-  [Glyph.medium]: "M",
-  [Glyph.heavy]: "H",
-  [Glyph.special1]: "X",
-  [Glyph.special2]: "Y",
-  [Glyph.tag]: "T",
-  [Glyph.dash]: "D",
-  [Glyph.parry]: "P",
+  [Glyph.lightPunch]: "q",
+  [Glyph.mediumPunch]: "w",
+  [Glyph.heavyPunch]: "e",
+  [Glyph.punch]: "p",
+  [Glyph.lightKick]: "a",
+  [Glyph.mediumKick]: "s",
+  [Glyph.heavyKick]: "d",
+  [Glyph.kick]: "k",
   [Glyph.then]: ">",
   [Glyph.or]: "|",
   [Glyph.and]: "+",
@@ -150,14 +144,14 @@ const letterNotationMap: { [key in Glyph]: string } = {
   [Glyph.upBack]: "ub",
   [Glyph.up]: "u",
   [Glyph.upForward]: "uf",
-  [Glyph.light]: "L",
-  [Glyph.medium]: "M",
-  [Glyph.heavy]: "H",
-  [Glyph.special1]: "S1",
-  [Glyph.special2]: "S2",
-  [Glyph.tag]: "T",
-  [Glyph.dash]: "D",
-  [Glyph.parry]: "P",
+  [Glyph.lightPunch]: "LP",
+  [Glyph.mediumPunch]: "MP",
+  [Glyph.heavyPunch]: "HP",
+  [Glyph.punch]: "P",
+  [Glyph.lightKick]: "LK",
+  [Glyph.mediumKick]: "MK",
+  [Glyph.heavyKick]: "HK",
+  [Glyph.kick]: "K",
   [Glyph.then]: " > ",
   [Glyph.or]: "|",
   [Glyph.and]: ".",
@@ -174,14 +168,14 @@ const unicodeNotationMap: { [key in Glyph]: string } = {
   [Glyph.upBack]: arrow7Unicode,
   [Glyph.up]: arrow8Unicode,
   [Glyph.upForward]: arrow9Unicode,
-  [Glyph.light]: lightUnicode,
-  [Glyph.medium]: mediumUnicode,
-  [Glyph.heavy]: heavyUnicode,
-  [Glyph.special1]: special1Unicode,
-  [Glyph.special2]: special2Unicode,
-  [Glyph.tag]: tagUnicode,
-  [Glyph.dash]: dashUnicode,
-  [Glyph.parry]: parryUnicode,
+  [Glyph.lightPunch]: lightUnicode + punchUnicode,
+  [Glyph.mediumPunch]: mediumUnicode + punchUnicode,
+  [Glyph.heavyPunch]: heavyUnicode + punchUnicode,
+  [Glyph.punch]: punchUnicode,
+  [Glyph.lightKick]: lightUnicode + kickUnicode,
+  [Glyph.mediumKick]: mediumUnicode + kickUnicode,
+  [Glyph.heavyKick]: heavyUnicode + kickUnicode,
+  [Glyph.kick]: kickUnicode,
   [Glyph.then]: thenUnicode,
   [Glyph.or]: orUnicode,
   [Glyph.and]: plusUnicode,

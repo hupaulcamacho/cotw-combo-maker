@@ -1,5 +1,5 @@
 ---
-import "@fontsource-variable/roboto-flex/wdth.css";
+import "@fontsource/racing-sans-one";
 
 interface Props {
   title: string;
@@ -8,7 +8,7 @@ interface Props {
 let year = new Date().getFullYear();
 
 let description =
-  "Create 2XKO combos and share them as a URL, plain text with multiple notations, emoji, or even image. 2XKOのコンボを入力し、URL、文字、絵文字、または画像として共有しましょう！";
+  "Create SF6 combos and share them as a URL, plain text with multiple notations, emoji, or even image. スト６のコンボを入力し、URL、文字、絵文字、または画像として共有しましょう！";
 
 const { title } = Astro.props;
 ---
@@ -25,24 +25,24 @@ const { title } = Astro.props;
     <meta property="twitter:image" content="/cover.jpg" />
 
     <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://combos.2xko.combolab.app/" />
+    <meta property="og:url" content="https://combos.sf6.combolab.app/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta
       property="og:image"
-      content="https://combos.2xko.combolab.app/cover.jpg"
+      content="https://combos.sf6.combolab.app/cover.jpg"
     />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="combos.2xko.combolab.app" />
-    <meta property="twitter:url" content="https://combos.2xko.combolab.app/" />
+    <meta property="twitter:domain" content="combos.sf6.combolab.app" />
+    <meta property="twitter:url" content="https://combos.sf6.combolab.app/" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta
       name="twitter:image"
-      content="https://combos.2xko.combolab.app/cover.jpg"
+      content="https://combos.sf6.combolab.app/cover.jpg"
     />
 
     <link
@@ -63,23 +63,36 @@ const { title } = Astro.props;
       href="/favicon-16x16.png?v=2"
     />
     <link rel="shortcut icon" href="/favicon.ico?v=2" />
-    <meta name="apple-mobile-web-app-title" content="2XKO Combo Maker" />
-    <meta name="application-name" content="2XKO Combo Maker" />
+    <meta name="apple-mobile-web-app-title" content="SF6 Combo Maker" />
+    <meta name="application-name" content="SF6 Combo Maker" />
     <meta name="msapplication-TileColor" content="#D5F379" />
     <meta name="theme-color" content="#000000" />
   </head>
-  <body
-    class="flex min-h-screen flex-col border-t-8 border-lime-400 bg-black text-white"
-  >
-    <div class="flex-grow">
+  <body class="flex min-h-screen flex-col bg-black">
+    <div
+      class="flex-grow bg-[linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,1)),url('bg.jpg')] bg-cover bg-center bg-no-repeat"
+    >
       <slot />
     </div>
     <footer
-      class="mx-auto my-10 max-w-lg px-8 text-center font-mono text-xs text-slate-700"
+      class="mx-auto my-10 max-w-lg px-8 text-center text-xs text-sky-200 drop-shadow-sm"
     >
-      The 2XKO name is a registered trademark or trademark of Riot Games, Inc.
-      Combolab is not affiliated with, endorsed, sponsored, or specifically
-      approved Riot Games, Inc.
+      <p>
+        Made by <a class="text-orange-500" href="https://combolab.app"
+          >Combolab</a
+        >. If you have any feedback please reach out on <a
+          href="https://x.com/combolabapp"
+          class="text-orange-500">X</a
+        >.
+      </p>
+      <p class="mt-2 opacity-50">
+        The Street Fighter 6 name is a registered trademark or trademark of
+        Capcom Co. Ltd. Combolab is not affiliated with, endorsed, sponsored, or
+        specifically approved by Capcom. Background art by <a
+          class="text-orange-500"
+          href="https://www.artstation.com/artwork/G8G84V">Jason Stauffer</a
+        >.
+      </p>
       <br />
       <br />
       Four Rays © {year} — All rights reserved.

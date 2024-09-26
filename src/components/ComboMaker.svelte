@@ -3,7 +3,6 @@
   import { onMount } from "svelte";
   import {
     Glyph,
-    svgForButton,
     shortCodeForButton,
     buttonForShortCode,
     numberNotationForButton,
@@ -12,6 +11,28 @@
   } from "@lib/types";
   import type { Combo } from "@lib/types";
   import GlyphComponent from "@components/glyphs/Glyph.svelte";
+  import Direction1 from "./glyphs/Direction1.svelte";
+  import Direction2 from "./glyphs/Direction2.svelte";
+  import Direction3 from "./glyphs/Direction3.svelte";
+  import Direction4 from "./glyphs/Direction4.svelte";
+  import Direction5 from "./glyphs/Direction5.svelte";
+  import Direction6 from "./glyphs/Direction6.svelte";
+  import Direction7 from "./glyphs/Direction7.svelte";
+  import Direction8 from "./glyphs/Direction8.svelte";
+  import Direction9 from "./glyphs/Direction9.svelte";
+  import ModifierHold from "./glyphs/ModifierHold.svelte";
+  import LightPunch from "./glyphs/LightPunch.svelte";
+  import MediumPunch from "./glyphs/MediumPunch.svelte";
+  import HeavyPunch from "./glyphs/HeavyPunch.svelte";
+  import Punch from "./glyphs/Punch.svelte";
+  import LightKick from "./glyphs/LightKick.svelte";
+  import MediumKick from "./glyphs/MediumKick.svelte";
+  import Kick from "./glyphs/Kick.svelte";
+  import HeavyKick from "./glyphs/HeavyKick.svelte";
+  import ModifierThen from "./glyphs/ModifierThen.svelte";
+  import ModifierOr from "./glyphs/ModifierOr.svelte";
+  import ModifierPlus from "./glyphs/ModifierPlus.svelte";
+  import Button from "./Button.svelte";
 
   let textModes = [
     { id: 1, text: `URL` },
@@ -30,6 +51,89 @@
 
   function closeAlert() {
     alertText = "";
+  }
+
+  function onKeyDown(e: KeyboardEvent) {
+    switch (e.key) {
+      case "1":
+        add(Glyph.downBack);
+        break;
+      case "2":
+        add(Glyph.down);
+        break;
+      case "3":
+        add(Glyph.downForward);
+        break;
+      case "4":
+        add(Glyph.back);
+        break;
+      case "5":
+        add(Glyph.neutral);
+        break;
+      case "6":
+        add(Glyph.forward);
+        break;
+      case "7":
+        add(Glyph.upBack);
+        break;
+      case "8":
+        add(Glyph.up);
+        break;
+      case "9":
+        add(Glyph.upForward);
+        break;
+      case "q":
+        add(Glyph.lightPunch);
+        break;
+      case "w":
+        add(Glyph.mediumPunch);
+        break;
+      case "e":
+        add(Glyph.heavyPunch);
+        break;
+      case "p":
+        add(Glyph.punch);
+        break;
+      case "a":
+        add(Glyph.lightKick);
+        break;
+      case "s":
+        add(Glyph.mediumKick);
+        break;
+      case "d":
+        add(Glyph.heavyKick);
+        break;
+      case "k":
+        add(Glyph.kick);
+        break;
+      case "+":
+        add(Glyph.and);
+        break;
+      case ">":
+        add(Glyph.then);
+        break;
+      case "|":
+        add(Glyph.or);
+        break;
+      case "h":
+        add(Glyph.hold);
+        break;
+      case "z":
+        undo();
+        break;
+      case "Backspace":
+        undo();
+        break;
+      case "x":
+        clearAll();
+        break;
+      case "t":
+        copyAsText();
+        break;
+      case "i":
+        copyAsImage();
+        break;
+    }
   }
 
   onMount(() => {
@@ -85,6 +189,12 @@
         text = combo.sequence
           .map((button) => letterNotationForButton(button))
           .join("");
+
+        text = text
+          .replace(/bdbddff/g, "hcf")
+          .replace(/fdfddbb/g, "hcb")
+          .replace(/ddff/g, "qcf")
+          .replace(/ddbb/g, "qcb");
         break;
       case 4:
         text = combo.sequence
@@ -134,13 +244,15 @@
   }
 </script>
 
+<svelte:window on:keydown={onKeyDown} />
+
 <div
-  class="flex flex-wrap items-start content-start gap-2.5 p-4 border rounded-lg border-slate-800 bg-slate-900 min-h-60"
+  class="flex flex-wrap items-start content-start gap-2.5 p-4 border border-yellow-200 border-opacity-20 backdrop-blur-xl rounded-lg min-h-60"
   id="combo"
 >
   {#if combo.sequence.length === 0}
     <p
-      class="mb-10 border-slate-400 text-sm text-slate-500 opacity-80 font-custom text-center absolute"
+      class="mb-10 text-center absolute font-mono text-sm color-red-200 text-yellow-200 opacity-35"
     >
       Add notations using the buttons below…
     </p>
@@ -156,282 +268,235 @@
   {/each}
 </div>
 
-<div class="flex my-8 justify-between sm:justify-center sm:gap-10 flex-wrap">
-  <div class="grid grid-cols-3 grid-rows-3 gap-2 max-w-36">
+<div
+  class="flex my-8 justify-between sm:justify-center sm:gap-10 flex-wrap p-4 backdrop-blur-xl rounded-lg"
+>
+  <!-- Left -->
+  <div class="grid grid-cols-3 grid-rows-3 gap-4 max-w-40 rounded-xl">
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.upBack)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="hover:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
+        title="7"
       >
-        <img
-          src={`/${svgForButton(Glyph.upBack)}`}
-          alt={Glyph.upBack}
-          class="w-10"
-        />
+        <Direction7 />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.up)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
+        title="8"
       >
-        <img src={`/${svgForButton(Glyph.up)}`} alt={Glyph.up} class="w-10" />
+        <Direction8 />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.upForward)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
+        title="9"
       >
-        <img
-          src={`/${svgForButton(Glyph.upForward)}`}
-          alt={Glyph.upForward}
-          class="w-10"
-        />
+        <Direction9 />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.back)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
+        title="4"
       >
-        <img
-          src={`/${svgForButton(Glyph.back)}`}
-          alt={Glyph.back}
-          class="w-10"
-        />
+        <Direction4 />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.neutral)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
+        title="5"
       >
-        <img
-          src={`/${svgForButton(Glyph.neutral)}`}
-          alt={Glyph.neutral}
-          class="w-10"
-        />
+        <Direction5 />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.forward)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
+        title="6"
       >
-        <img
-          src={`/${svgForButton(Glyph.forward)}`}
-          alt={Glyph.forward}
-          class="w-10"
-        />
+        <Direction6 />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.downBack)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
+        title="1"
       >
-        <img
-          src={`/${svgForButton(Glyph.downBack)}`}
-          alt={Glyph.downBack}
-          class="w-10"
-        />
+        <Direction1 />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.down)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
+        title="2"
       >
-        <img
-          src={`/${svgForButton(Glyph.down)}`}
-          alt={Glyph.down}
-          class="w-10"
-        />
+        <Direction2 />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.downForward)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
+        title="3"
       >
-        <img
-          src={`/${svgForButton(Glyph.downForward)}`}
-          alt={Glyph.downForward}
-          class="w-10"
-        />
+        <Direction3 />
       </button>
     </div>
   </div>
+  <!-- Middle -->
   <div class="grid grid-cols-4 grid-rows-3 gap-2">
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Glyph.light)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        on:click={() => add(Glyph.lightPunch)}
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="Q"
       >
-        <img
-          src={`/${svgForButton(Glyph.light)}`}
-          alt={Glyph.light}
-          class="w-10"
-        />
+        <LightPunch />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Glyph.medium)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        on:click={() => add(Glyph.mediumPunch)}
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="W"
       >
-        <img
-          src={`/${svgForButton(Glyph.medium)}`}
-          alt={Glyph.medium}
-          class="w-10"
-        />
+        <MediumPunch />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Glyph.heavy)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        on:click={() => add(Glyph.heavyPunch)}
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="E"
       >
-        <img
-          src={`/${svgForButton(Glyph.heavy)}`}
-          alt={Glyph.heavy}
-          class="w-10"
-        />
+        <HeavyPunch />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Glyph.tag)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        on:click={() => add(Glyph.punch)}
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="P"
       >
-        <img src={`/${svgForButton(Glyph.tag)}`} alt={Glyph.tag} class="w-10" />
+        <Punch />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Glyph.special1)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        on:click={() => add(Glyph.lightKick)}
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="A"
       >
-        <img
-          src={`/${svgForButton(Glyph.special1)}`}
-          alt={Glyph.special1}
-          class="w-10"
-        />
+        <LightKick />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Glyph.special2)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        on:click={() => add(Glyph.mediumKick)}
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="S"
       >
-        <img
-          src={`/${svgForButton(Glyph.special2)}`}
-          alt={Glyph.special2}
-          class="w-10"
-        />
+        <MediumKick />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Glyph.dash)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        on:click={() => add(Glyph.heavyKick)}
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="D"
       >
-        <img
-          src={`/${svgForButton(Glyph.dash)}`}
-          alt={Glyph.dash}
-          class="w-10"
-        />
+        <HeavyKick />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
-        on:click={() => add(Glyph.parry)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        on:click={() => add(Glyph.kick)}
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="K"
       >
-        <img
-          src={`/${svgForButton(Glyph.parry)}`}
-          alt={Glyph.parry}
-          class="w-10"
-        />
+        <Kick />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.and)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="+"
       >
-        <img src={`/${svgForButton(Glyph.and)}`} alt={Glyph.and} class="w-10" />
+        <ModifierPlus />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.then)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title=">"
       >
-        <img
-          src={`/${svgForButton(Glyph.then)}`}
-          alt={Glyph.then}
-          class="w-10"
-        />
+        <ModifierThen />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.hold)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="H"
       >
-        <img
-          src={`/${svgForButton(Glyph.hold)}`}
-          alt={Glyph.hold}
-          class="w-10"
-        />
+        <ModifierHold />
       </button>
     </div>
     <div class="flex items-center justify-center">
       <button
         on:click={() => add(Glyph.or)}
-        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        class="rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+        title="|"
       >
-        <img src={`/${svgForButton(Glyph.or)}`} alt={Glyph.or} class="w-10" />
+        <ModifierOr />
       </button>
     </div>
   </div>
+  <!-- Right -->
   <div class="grid grid-rows-3 gap-2 flex-grow sm:mt-0 mt-10">
     <div class="flex gap-2">
-      <button
-        type="button"
-        class="rounded-md p-2 border-2 flex-grow border-slate-700 enabled:hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 enabled:active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-        on:click={undo}
-        disabled={disableActions}
-      >
-        Undo
-      </button>
-      <button
-        type="button"
-        class="rounded-md p-2 border-2 flex-grow border-slate-700 enabled:hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 enabled:active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-        on:click={clearAll}
-        disabled={disableActions}
-      >
-        Reset Combo
-      </button>
+      <Button
+        buttonText="Undo"
+        onClickAction={undo}
+        {disableActions}
+        shortcut="Z"
+      />
+      <Button
+        buttonText="Reset Combo"
+        onClickAction={clearAll}
+        {disableActions}
+        shortcut="X"
+      />
     </div>
 
     <div class="flex gap-2">
-      <button
-        type="button"
-        class="rounded-md p-2 border-2 flex-grow border-slate-700 enabled:hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 enabled:active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-        on:click={copyAsText}
-        disabled={disableActions}
-      >
-        Copy as
-      </button>
+      <Button
+        buttonText="Copy as"
+        onClickAction={copyAsText}
+        {disableActions}
+        shortcut="T"
+      />
       <div>
         <select
           id="location"
           name="location"
-          class="block w-full text-lime-400 h-full bg-transparent rounded-md border-0 ring-2 ring-inset ring-slate-700 focus:ring-2 focus:ring-indigo-600"
+          class="text-yellow-200 block w-full h-full bg-transparent rounded-md border-0 ring-1 ring-opacity-30 ring-inset ring-yellow-200 focus:ring-1 focus:ring-yellow-200"
           bind:value={selectedTextMode}
+          disabled={disableActions}
         >
           {#each textModes as mode}
             <option value={mode.id} selected={mode.id === selectedTextMode}
@@ -442,14 +507,12 @@
       </div>
     </div>
 
-    <button
-      type="button"
-      class="rounded-md p-2 border-2 flex-grow border-slate-700 enabled:hover:border-slate-500 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 enabled:active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-      on:click={copyAsImage}
-      disabled={disableActions}
-    >
-      Save as <span class="text-lime-400">image</span>
-    </button>
+    <Button
+      buttonText="Save as Image"
+      onClickAction={copyAsImage}
+      {disableActions}
+      shortcut="I"
+    />
   </div>
 </div>
 
@@ -466,7 +529,7 @@
           <div class="flex items-start">
             <div class="flex-shrink-0">
               <svg
-                class="h-6 w-6 text-lime-500"
+                class="h-6 w-6 text-purple-500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"

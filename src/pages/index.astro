@@ -3,33 +3,21 @@ import Layout from "@layouts/Layout.astro";
 import Notation from "@components/ComboMaker.svelte";
 ---
 
-<Layout title="2XKO Combo Maker | Combolab">
-  <main class="mx-auto max-w-screen-md px-4">
-    <h1 class="mb-4 mt-10 text-4xl tracking-wider text-slate-200">
-      <span class="text-lime-400">2XKO</span> Combo Maker
-    </h1>
-    <div class="sm:flex">
-      <p class="mb-2 font-mono text-sm text-slate-500">
-        Create 2XKO combos and share them as a URL, plain text with multiple
-        notations, emoji, or even image.
+<Layout title="SF6 Combo Maker | Combolab">
+  <main>
+    <div class="mx-auto max-w-screen-md px-4 pt-10">
+      <h1 class="mb-4 text-4xl tracking-wider text-yellow-200">
+        <span class="font-display text-yellow-400">Street Fighter 6</span>
+        <span class="font-display text-yellow-200">— Combo Maker</span>
+      </h1>
+      <p class="mb-2 font-mono text-sm text-blue-200">
+        Create SF6 combos and share them as a URL, image, or text.
       </p>
-      <p
-        class="mb-10 border-slate-400 font-mono text-sm text-slate-500 sm:border-l sm:pl-2"
-      >
-        2XKOのコンボを入力し、URL、文字、絵文字、または画像として共有しましょう！
+      <p class="-mt-2 mb-10 font-mono text-sm text-blue-200">
+        スト６のコンボを入力し、URL、文字、絵文字、または画像として共有しましょう！
       </p>
-    </div>
 
-    <Notation client:load />
-
-    <div class="flex items-center justify-center">
-      <p class="font-mono text-xs font-normal text-slate-500">
-        Made by <a class="text-lime-400" href="https://combolab.app">Combolab</a
-        >. If you have any feedback please reach out on <a
-          href="https://x.com/combolabapp"
-          class="text-lime-400">X</a
-        >.
-      </p>
+      <Notation client:load />
     </div>
   </main>
 </Layout>
