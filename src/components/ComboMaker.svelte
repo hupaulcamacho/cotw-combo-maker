@@ -32,8 +32,17 @@
   import ModifierThen from "./glyphs/ModifierThen.svelte";
   import ModifierOr from "./glyphs/ModifierOr.svelte";
   import ModifierPlus from "./glyphs/ModifierPlus.svelte";
+  import QuarterCircleForward from "./glyphs/QuarterCircleForward.svelte";
+  import QuarterCircleBack from "./glyphs/QuarterCircleBack.svelte";
+  import HalfCircleForward from "./glyphs/HalfCircleForward.svelte";
+  import HalfCircleBack from "./glyphs/HalfCircleBack.svelte";
+  import DragonPunch from "./glyphs/DragonPunch.svelte";
+  import ThreeSixty from "./glyphs/ThreeSixty.svelte";
+  import DriveImpact from "./glyphs/DriveImpact.svelte";
+  import DriveRush from "./glyphs/DriveRush.svelte";
+  import AnyDirection from "./glyphs/AnyDirection.svelte";
   import Button from "./Button.svelte";
-  import Key from "./Key.svelte";
+  import GameButton from "./GameButton.svelte";
 
   let textModes = [
     { id: 1, text: `URL` },
@@ -58,68 +67,101 @@
     const caseInsensitiveKey = e.key.toLowerCase();
 
     switch (caseInsensitiveKey) {
-      case "1":
+      case shortCodeForButton(Glyph.downBack):
         add(Glyph.downBack);
         break;
-      case "2":
+      case shortCodeForButton(Glyph.down):
         add(Glyph.down);
         break;
-      case "3":
+      case shortCodeForButton(Glyph.downForward):
         add(Glyph.downForward);
         break;
-      case "4":
+      case shortCodeForButton(Glyph.back):
         add(Glyph.back);
         break;
-      case "5":
+      case shortCodeForButton(Glyph.neutral):
         add(Glyph.neutral);
         break;
-      case "6":
+      case shortCodeForButton(Glyph.forward):
         add(Glyph.forward);
         break;
-      case "7":
+      case shortCodeForButton(Glyph.upBack):
         add(Glyph.upBack);
         break;
-      case "8":
+      case shortCodeForButton(Glyph.up):
         add(Glyph.up);
         break;
-      case "9":
+      case shortCodeForButton(Glyph.upForward):
         add(Glyph.upForward);
         break;
-      case "q":
+      case shortCodeForButton(Glyph.lightPunch):
         add(Glyph.lightPunch);
         break;
-      case "w":
+      case shortCodeForButton(Glyph.mediumPunch):
         add(Glyph.mediumPunch);
         break;
-      case "e":
+      case shortCodeForButton(Glyph.heavyPunch):
         add(Glyph.heavyPunch);
         break;
-      case "p":
+      case shortCodeForButton(Glyph.punch):
         add(Glyph.punch);
         break;
-      case "a":
+      case shortCodeForButton(Glyph.lightKick):
         add(Glyph.lightKick);
         break;
-      case "s":
+      case shortCodeForButton(Glyph.mediumKick):
         add(Glyph.mediumKick);
         break;
-      case "d":
+      case shortCodeForButton(Glyph.heavyKick):
         add(Glyph.heavyKick);
         break;
-      case "k":
+      case shortCodeForButton(Glyph.kick):
         add(Glyph.kick);
         break;
-      case "+":
+      case shortCodeForButton(Glyph.and):
         add(Glyph.and);
         break;
-      case ">":
+      case shortCodeForButton(Glyph.then):
         add(Glyph.then);
         break;
-      case "|":
+      case shortCodeForButton(Glyph.or):
         add(Glyph.or);
         break;
-      case "h":
+      case shortCodeForButton(Glyph.hold):
         add(Glyph.hold);
+        break;
+      case shortCodeForButton(Glyph.quarterCircleBack):
+        add(Glyph.quarterCircleBack);
+        break;
+      case shortCodeForButton(Glyph.quarterCircleForward):
+        add(Glyph.quarterCircleForward);
+        break;
+      case shortCodeForButton(Glyph.halfCircleBack):
+        add(Glyph.halfCircleBack);
+        break;
+      case shortCodeForButton(Glyph.halfCircleForward):
+        add(Glyph.halfCircleForward);
+        break;
+      case shortCodeForButton(Glyph.dragonPunch):
+        add(Glyph.dragonPunch);
+        break;
+      case shortCodeForButton(Glyph.threeSixty):
+        add(Glyph.threeSixty);
+        break;
+      case shortCodeForButton(Glyph.driveImpact):
+        add(Glyph.driveImpact);
+        break;
+      case shortCodeForButton(Glyph.driveRush):
+        add(Glyph.driveRush);
+        break;
+      case shortCodeForButton(Glyph.anyDirection):
+        add(Glyph.anyDirection);
+        break;
+      case shortCodeForButton(Glyph.link):
+        add(Glyph.link);
+        break;
+      case shortCodeForButton(Glyph.cancel):
+        add(Glyph.cancel);
         break;
       case "z":
         undo();
@@ -271,252 +313,302 @@
   {/each}
 </div>
 
+<div class="flex gap-2 mt-2 justify-evenly">
+  <div class="flex flex-1">
+    <Button
+      buttonText="Undo"
+      onClickAction={undo}
+      {disableActions}
+      shortcut="Z"
+    />
+  </div>
+  <div class="flex flex-1">
+    <Button
+      buttonText="Reset"
+      onClickAction={clearAll}
+      {disableActions}
+      shortcut="X"
+    />
+  </div>
+</div>
+
 <div
-  class="flex my-8 justify-between sm:justify-center sm:gap-10 flex-wrap p-4 backdrop-blur-xl rounded-lg"
+  id="buttons"
+  class="flex my-8 justify-around gap-5 flex-wrap p-4 backdrop-blur-xl rounded-lg"
 >
   <!-- Left -->
-  <div class="grid grid-cols-3 grid-rows-3 gap-4 max-w-40 rounded-xl">
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.upBack)}
-        class="relative hover:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
-      >
-        <Direction7 />
-        <Key key="7" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.up)}
-        class="relative hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
-      >
-        <Direction8 />
-        <Key key="8" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.upForward)}
-        class="relative hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
-      >
-        <Direction9 />
-        <Key key="9" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.back)}
-        class="relative hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
-      >
-        <Direction4 />
-        <Key key="4" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.neutral)}
-        class="relative hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
-      >
-        <Direction5 />
-        <Key key="5" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.forward)}
-        class="relative hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
-      >
-        <Direction6 />
-        <Key key="6" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.downBack)}
-        class="relative hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
-      >
-        <Direction1 />
-        <Key key="1" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.down)}
-        class="relative hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
-      >
-        <Direction2 />
-        <Key key="2" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.downForward)}
-        class="relative hover:opacity-50 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200 active:scale-90"
-      >
-        <Direction3 />
-        <Key key="3" />
-      </button>
-    </div>
+  <div class="grid grid-cols-3 grid-rows-3 gap-4">
+    <GameButton
+      key="7"
+      onClickAction={() => add(Glyph.upBack)}
+      title="Up-Back | 後ろジャンプ"
+    >
+      <Direction7 />
+    </GameButton>
+    <GameButton
+      key="8"
+      onClickAction={() => add(Glyph.up)}
+      title="Up | ジャンプ"
+    >
+      <Direction8 />
+    </GameButton>
+    <GameButton
+      key="9"
+      onClickAction={() => add(Glyph.upForward)}
+      title="Up-Forward | 前ジャンプ"
+    >
+      <Direction9 />
+    </GameButton>
+    <GameButton
+      key="4"
+      onClickAction={() => add(Glyph.back)}
+      title="Back | 後ろ"
+    >
+      <Direction4 />
+    </GameButton>
+    <GameButton
+      key="5"
+      onClickAction={() => add(Glyph.neutral)}
+      title="Neutral | 立ち"
+    >
+      <Direction5 />
+    </GameButton>
+    <GameButton
+      key="6"
+      onClickAction={() => add(Glyph.forward)}
+      title="Forward | 前"
+    >
+      <Direction6 />
+    </GameButton>
+    <GameButton
+      key="1"
+      onClickAction={() => add(Glyph.downBack)}
+      title="Down-Back | 後ろしゃがみ"
+    >
+      <Direction1 />
+    </GameButton>
+    <GameButton
+      key="2"
+      onClickAction={() => add(Glyph.down)}
+      title="Down | しゃがみ"
+    >
+      <Direction2 />
+    </GameButton>
+    <GameButton
+      key="3"
+      onClickAction={() => add(Glyph.downForward)}
+      title="Down-Forward | 前しゃがみ"
+    >
+      <Direction3 />
+    </GameButton>
   </div>
   <!-- Middle -->
-  <div class="grid grid-cols-4 grid-rows-3 gap-2">
+  <div class="grid grid-cols-3 grid-rows-4 sm:grid-cols-4 sm:grid-rows-3 gap-4">
+    <GameButton
+      key="Q"
+      onClickAction={() => add(Glyph.lightPunch)}
+      title="Light Punch | 弱パンチ"
+    >
+      <LightPunch />
+    </GameButton>
+    <GameButton
+      key="W"
+      onClickAction={() => add(Glyph.mediumPunch)}
+      title="Medium Punch | 中パンチ"
+    >
+      <MediumPunch />
+    </GameButton>
+    <GameButton
+      key="E"
+      onClickAction={() => add(Glyph.heavyPunch)}
+      title="Heavy Punch | 強パンチ"
+    >
+      <HeavyPunch />
+    </GameButton>
+    <GameButton
+      key="P"
+      onClickAction={() => add(Glyph.punch)}
+      title="Any Punch | パンチ"
+    >
+      <Punch />
+    </GameButton>
+    <GameButton
+      key="A"
+      onClickAction={() => add(Glyph.lightKick)}
+      title="Light Kick | 弱キック"
+    >
+      <LightKick />
+    </GameButton>
+    <GameButton
+      key="S"
+      onClickAction={() => add(Glyph.mediumKick)}
+      title="Medium Kick | 中キック"
+    >
+      <MediumKick />
+    </GameButton>
+    <GameButton
+      key="D"
+      onClickAction={() => add(Glyph.heavyKick)}
+      title="Heavy Kick | 強キック"
+    >
+      <HeavyKick />
+    </GameButton>
+    <GameButton
+      key="K"
+      onClickAction={() => add(Glyph.kick)}
+      title="Any Kick | キック"
+    >
+      <Kick />
+    </GameButton>
     <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.lightPunch)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <LightPunch />
-        <Key key="Q" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.mediumPunch)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <MediumPunch />
-        <Key key="W" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.heavyPunch)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <HeavyPunch />
-        <Key key="E" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.punch)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <Punch />
-        <Key key="P" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.lightKick)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <LightKick />
-        <Key key="A" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.mediumKick)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <MediumKick />
-        <Key key="S" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.heavyKick)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <HeavyKick />
-        <Key key="D" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.kick)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
-      >
-        <Kick />
-        <Key key="K" />
-      </button>
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.and)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+      <GameButton
+        key="+"
+        onClickAction={() => add(Glyph.and)}
+        includeBackground={true}
+        title="Simultaneous | 同時入力"
       >
         <ModifierPlus />
-        <Key key="+" />
-      </button>
+      </GameButton>
     </div>
     <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.then)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+      <GameButton
+        key=">"
+        onClickAction={() => add(Glyph.then)}
+        includeBackground={true}
+        title="Sequential | 連続入力"
       >
         <ModifierThen />
-        <Key key=">" />
-      </button>
+      </GameButton>
     </div>
     <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.hold)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+      <GameButton
+        key="H"
+        onClickAction={() => add(Glyph.hold)}
+        includeBackground={true}
+        title="Hold | チャージ"
       >
         <ModifierHold />
-        <Key key="H" />
-      </button>
+      </GameButton>
     </div>
     <div class="flex items-center justify-center">
-      <button
-        on:click={() => add(Glyph.or)}
-        class="relative rounded-full bg-white/10 shadow-sm hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-90 w-10"
+      <GameButton
+        key="|"
+        onClickAction={() => add(Glyph.or)}
+        includeBackground={true}
+        title="Alternative | 選択"
       >
         <ModifierOr />
-        <Key key="|" />
-      </button>
+      </GameButton>
     </div>
   </div>
   <!-- Right -->
-  <div class="grid grid-rows-3 gap-2 flex-grow sm:mt-0 mt-10">
-    <div class="flex gap-2">
-      <Button
-        buttonText="Undo"
-        onClickAction={undo}
-        {disableActions}
-        shortcut="Z"
-      />
-      <Button
-        buttonText="Reset Combo"
-        onClickAction={clearAll}
-        {disableActions}
-        shortcut="X"
-      />
+  <div class="grid grid-cols-3 grid-rows-3 gap-4">
+    <GameButton
+      key={shortCodeForButton(Glyph.quarterCircleForward).toUpperCase()}
+      onClickAction={() => add(Glyph.quarterCircleForward)}
+      title="Quarter Circle Forward | 波動拳コマンド"
+    >
+      <QuarterCircleForward />
+    </GameButton>
+    <GameButton
+      key={shortCodeForButton(Glyph.quarterCircleBack).toUpperCase()}
+      onClickAction={() => add(Glyph.quarterCircleBack)}
+      title="Quarter Circle Back | 竜巻コマンド"
+    >
+      <QuarterCircleBack />
+    </GameButton>
+    <GameButton
+      key={shortCodeForButton(Glyph.dragonPunch).toUpperCase()}
+      onClickAction={() => add(Glyph.dragonPunch)}
+      title="Dragon Punch | 昇竜拳コマンド"
+    >
+      <DragonPunch />
+    </GameButton>
+    <GameButton
+      key={shortCodeForButton(Glyph.halfCircleForward).toUpperCase()}
+      onClickAction={() => add(Glyph.halfCircleForward)}
+      title="Half Circle Forward | 半回転前"
+    >
+      <HalfCircleForward />
+    </GameButton>
+    <GameButton
+      key={shortCodeForButton(Glyph.halfCircleBack).toUpperCase()}
+      onClickAction={() => add(Glyph.halfCircleBack)}
+      title="Half Circle Back | 半回転後"
+    >
+      <HalfCircleBack />
+    </GameButton>
+    <GameButton
+      key={shortCodeForButton(Glyph.threeSixty).toUpperCase()}
+      onClickAction={() => add(Glyph.threeSixty)}
+      title="Three Sixty | 一回転"
+    >
+      <ThreeSixty />
+    </GameButton>
+    <GameButton
+      key={shortCodeForButton(Glyph.anyDirection).toUpperCase()}
+      onClickAction={() => add(Glyph.anyDirection)}
+      title="Any Direction | 任意方向"
+    >
+      <AnyDirection />
+    </GameButton>
+    <div class="flex items-center justify-center">
+      <GameButton
+        key={shortCodeForButton(Glyph.driveImpact).toUpperCase()}
+        onClickAction={() => add(Glyph.driveImpact)}
+        includeBackground={true}
+        title="Drive Impact | ドライブインパクト"
+      >
+        <DriveImpact />
+      </GameButton>
     </div>
-
-    <div class="flex gap-2">
-      <Button
-        buttonText="Copy as"
-        onClickAction={copyAsText}
-        {disableActions}
-        shortcut="T"
-      />
-      <div>
-        <select
-          id="location"
-          name="location"
-          class="text-yellow-200 block w-full h-full bg-transparent rounded-md border-0 ring-1 ring-opacity-30 ring-inset ring-yellow-200 focus:ring-1 focus:ring-yellow-200"
-          bind:value={selectedTextMode}
-          disabled={disableActions}
-        >
-          {#each textModes as mode}
-            <option value={mode.id} selected={mode.id === selectedTextMode}
-              >{mode.text}</option
-            >
-          {/each}
-        </select>
-      </div>
+    <div class="flex items-center justify-center">
+      <GameButton
+        key={shortCodeForButton(Glyph.driveRush).toUpperCase()}
+        onClickAction={() => add(Glyph.driveRush)}
+        includeBackground={true}
+        title="Drive Rush | ドライブラッシュ"
+      >
+        <DriveRush />
+      </GameButton>
     </div>
-
-    <Button
-      buttonText="Save as Image"
-      onClickAction={copyAsImage}
-      {disableActions}
-      shortcut="I"
-    />
   </div>
+</div>
+
+<div class="flex gap-2 sm:mt-0 mt-10 flex-col sm:flex-row">
+  <div class="flex gap-2 flex-grow">
+    <Button
+      buttonText="Copy as…"
+      onClickAction={copyAsText}
+      {disableActions}
+      shortcut="T"
+    />
+    <div>
+      <select
+        id="location"
+        name="location"
+        class="text-yellow-200 block w-full h-full bg-transparent rounded-md border-0 ring-1 ring-opacity-30 ring-inset ring-yellow-200 focus:ring-1 focus:ring-yellow-200"
+        bind:value={selectedTextMode}
+        disabled={disableActions}
+      >
+        {#each textModes as mode}
+          <option value={mode.id} selected={mode.id === selectedTextMode}
+            >{mode.text}</option
+          >
+        {/each}
+      </select>
+    </div>
+  </div>
+
+  <div
+    class="border-l border-yellow-200 border-opacity-20 mx-2 hidden sm:block"
+  ></div>
+  <Button
+    buttonText="Save as Image"
+    onClickAction={copyAsImage}
+    {disableActions}
+    shortcut="I"
+  />
 </div>
 
 <div
@@ -526,13 +618,13 @@
   <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
     {#if alertText !== ""}
       <div
-        class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-gray-900 shadow-lg ring-1 ring-black ring-opacity-5"
+        class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-black/50 border border-yellow-200 border-opacity-20 backdrop-blur-xl ring-1 ring-black ring-opacity-5"
       >
         <div class="p-4">
           <div class="flex items-start">
             <div class="flex-shrink-0">
               <svg
-                class="h-6 w-6 text-purple-500"
+                class="h-6 w-6 text-orange-500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
@@ -547,8 +639,8 @@
               </svg>
             </div>
             <div class="ml-3 w-0 flex-1 pt-0.5 font-mono">
-              <p class="text-sm font-medium">Combo copied!</p>
-              <p class="mt-1 text-sm text-gray-400">
+              <p class="text-sm font-medium text-yellow-200">Combo copied!</p>
+              <p class="mt-1 text-sm text-stone-400">
                 {alertText}
               </p>
             </div>
