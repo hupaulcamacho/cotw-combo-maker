@@ -66,6 +66,62 @@
   function onKeyDown(e: KeyboardEvent) {
     const caseInsensitiveKey = e.key.toLowerCase();
 
+    // Handle keyboard shortcuts first
+    switch (caseInsensitiveKey) {
+      case "z":
+        undo();
+        return;
+      case "backspace":
+        undo();
+        return;
+      case "x":
+        clearAll();
+        return;
+      case "c":
+        copyAsText();
+        return;
+      case "v":
+        copyAsImage();
+        return;
+      case "+":
+        add(Glyph.and);
+        return;
+      case ">":
+        add(Glyph.then);
+        return;
+      case "o":
+        add(Glyph.hold);
+        return;
+      case "p":
+        add(Glyph.or);
+        return;
+      case "t":
+        add(Glyph.quarterCircleForward);
+        return;
+      case "y":
+        add(Glyph.quarterCircleBack);
+        return;
+      case "u":
+        add(Glyph.dragonPunch);
+        return;
+      case "h":
+        add(Glyph.halfCircleForward);
+        return;
+      case "j":
+        add(Glyph.halfCircleBack);
+        return;
+      case "k":
+        add(Glyph.threeSixty);
+        return;
+      case "b":
+        add(Glyph.driveImpact);
+        return;
+      case "n":
+        add(Glyph.driveRush);
+        return;
+    }
+
+    // Handle shortcodes
     switch (caseInsensitiveKey) {
       case shortCodeForButton(Glyph.downBack):
         add(Glyph.downBack);
@@ -103,9 +159,6 @@
       case shortCodeForButton(Glyph.heavyPunch):
         add(Glyph.heavyPunch);
         break;
-      case shortCodeForButton(Glyph.punch):
-        add(Glyph.punch);
-        break;
       case shortCodeForButton(Glyph.lightKick):
         add(Glyph.lightKick);
         break;
@@ -115,45 +168,6 @@
       case shortCodeForButton(Glyph.heavyKick):
         add(Glyph.heavyKick);
         break;
-      case shortCodeForButton(Glyph.kick):
-        add(Glyph.kick);
-        break;
-      case shortCodeForButton(Glyph.and):
-        add(Glyph.and);
-        break;
-      case shortCodeForButton(Glyph.then):
-        add(Glyph.then);
-        break;
-      case shortCodeForButton(Glyph.or):
-        add(Glyph.or);
-        break;
-      case shortCodeForButton(Glyph.hold):
-        add(Glyph.hold);
-        break;
-      case shortCodeForButton(Glyph.quarterCircleBack):
-        add(Glyph.quarterCircleBack);
-        break;
-      case shortCodeForButton(Glyph.quarterCircleForward):
-        add(Glyph.quarterCircleForward);
-        break;
-      case shortCodeForButton(Glyph.halfCircleBack):
-        add(Glyph.halfCircleBack);
-        break;
-      case shortCodeForButton(Glyph.halfCircleForward):
-        add(Glyph.halfCircleForward);
-        break;
-      case shortCodeForButton(Glyph.dragonPunch):
-        add(Glyph.dragonPunch);
-        break;
-      case shortCodeForButton(Glyph.threeSixty):
-        add(Glyph.threeSixty);
-        break;
-      case shortCodeForButton(Glyph.driveImpact):
-        add(Glyph.driveImpact);
-        break;
-      case shortCodeForButton(Glyph.driveRush):
-        add(Glyph.driveRush);
-        break;
       case shortCodeForButton(Glyph.anyDirection):
         add(Glyph.anyDirection);
         break;
@@ -162,21 +176,6 @@
         break;
       case shortCodeForButton(Glyph.cancel):
         add(Glyph.cancel);
-        break;
-      case "z":
-        undo();
-        break;
-      case "backspace":
-        undo();
-        break;
-      case "x":
-        clearAll();
-        break;
-      case "t":
-        copyAsText();
-        break;
-      case "g":
-        copyAsImage();
         break;
     }
   }
@@ -426,7 +425,7 @@
       <HeavyPunch />
     </GameButton>
     <GameButton
-      key="P"
+      key="R"
       onClickAction={() => add(Glyph.punch)}
       title="Any Punch | パンチ"
     >
@@ -454,7 +453,7 @@
       <HeavyKick />
     </GameButton>
     <GameButton
-      key="K"
+      key="F"
       onClickAction={() => add(Glyph.kick)}
       title="Any Kick | キック"
     >
@@ -465,7 +464,7 @@
         key="+"
         onClickAction={() => add(Glyph.and)}
         includeBackground={true}
-        title="Simultaneous | 同時入力"
+        title="Simultaneous (+) | 同時入力"
       >
         <ModifierPlus />
       </GameButton>
@@ -475,14 +474,14 @@
         key=">"
         onClickAction={() => add(Glyph.then)}
         includeBackground={true}
-        title="Sequential | 連続入力"
+        title="Sequential (>) | 連続入力"
       >
         <ModifierThen />
       </GameButton>
     </div>
     <div class="flex items-center justify-center">
       <GameButton
-        key="H"
+        key="O"
         onClickAction={() => add(Glyph.hold)}
         includeBackground={true}
         title="Hold | チャージ"
@@ -492,7 +491,7 @@
     </div>
     <div class="flex items-center justify-center">
       <GameButton
-        key="|"
+        key="P"
         onClickAction={() => add(Glyph.or)}
         includeBackground={true}
         title="Alternative | 選択"
@@ -504,49 +503,49 @@
   <!-- Right -->
   <div class="grid grid-cols-3 grid-rows-3 gap-4">
     <GameButton
-      key={shortCodeForButton(Glyph.quarterCircleForward).toUpperCase()}
+      key="T"
       onClickAction={() => add(Glyph.quarterCircleForward)}
       title="Quarter Circle Forward | 波動拳コマンド"
     >
       <QuarterCircleForward />
     </GameButton>
     <GameButton
-      key={shortCodeForButton(Glyph.quarterCircleBack).toUpperCase()}
+      key="Y"
       onClickAction={() => add(Glyph.quarterCircleBack)}
       title="Quarter Circle Back | 竜巻コマンド"
     >
       <QuarterCircleBack />
     </GameButton>
     <GameButton
-      key={shortCodeForButton(Glyph.dragonPunch).toUpperCase()}
+      key="U"
       onClickAction={() => add(Glyph.dragonPunch)}
       title="Dragon Punch | 昇竜拳コマンド"
     >
       <DragonPunch />
     </GameButton>
     <GameButton
-      key={shortCodeForButton(Glyph.halfCircleForward).toUpperCase()}
+      key="H"
       onClickAction={() => add(Glyph.halfCircleForward)}
       title="Half Circle Forward | 半回転前"
     >
       <HalfCircleForward />
     </GameButton>
     <GameButton
-      key={shortCodeForButton(Glyph.halfCircleBack).toUpperCase()}
+      key="J"
       onClickAction={() => add(Glyph.halfCircleBack)}
       title="Half Circle Back | 半回転後"
     >
       <HalfCircleBack />
     </GameButton>
     <GameButton
-      key={shortCodeForButton(Glyph.threeSixty).toUpperCase()}
+      key="K"
       onClickAction={() => add(Glyph.threeSixty)}
       title="Three Sixty | 一回転"
     >
       <ThreeSixty />
     </GameButton>
     <GameButton
-      key={shortCodeForButton(Glyph.anyDirection).toUpperCase()}
+      key="0"
       onClickAction={() => add(Glyph.anyDirection)}
       title="Any Direction | 任意方向"
     >
@@ -554,7 +553,7 @@
     </GameButton>
     <div class="flex items-center justify-center">
       <GameButton
-        key={shortCodeForButton(Glyph.driveImpact).toUpperCase()}
+        key="B"
         onClickAction={() => add(Glyph.driveImpact)}
         includeBackground={true}
         title="Drive Impact | ドライブインパクト"
@@ -564,7 +563,7 @@
     </div>
     <div class="flex items-center justify-center">
       <GameButton
-        key={shortCodeForButton(Glyph.driveRush).toUpperCase()}
+        key="N"
         onClickAction={() => add(Glyph.driveRush)}
         includeBackground={true}
         title="Drive Rush | ドライブラッシュ"
@@ -581,7 +580,7 @@
       buttonText="Copy as…"
       onClickAction={copyAsText}
       {disableActions}
-      shortcut="T"
+      shortcut="C"
     />
     <div>
       <select
@@ -607,7 +606,7 @@
     buttonText="Save as Image"
     onClickAction={copyAsImage}
     {disableActions}
-    shortcut="G"
+    shortcut="V"
   />
 </div>
 
