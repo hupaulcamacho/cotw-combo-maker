@@ -292,7 +292,7 @@
 <svelte:window on:keydown={onKeyDown} />
 
 <div
-  class="flex flex-wrap items-start content-start gap-2.5 p-4 border border-yellow-200 border-opacity-20 backdrop-blur-xl rounded-lg min-h-60"
+  class="flex flex-wrap items-start content-start gap-2.5 p-4 border border-yellow-200 border-opacity-20 backdrop-blur-xl rounded-lg min-h-20"
   id="combo"
 >
   {#if combo.sequence.length === 0}
