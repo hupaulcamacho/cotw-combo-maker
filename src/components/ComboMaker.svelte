@@ -175,7 +175,7 @@
       case "t":
         copyAsText();
         break;
-      case "i":
+      case "g":
         copyAsImage();
         break;
     }
@@ -607,7 +607,7 @@
     buttonText="Save as Image"
     onClickAction={copyAsImage}
     {disableActions}
-    shortcut="I"
+    shortcut="G"
   />
 </div>
 
