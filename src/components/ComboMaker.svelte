@@ -289,27 +289,28 @@
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
-
-<div
-  class="flex flex-wrap items-start content-start gap-2.5 p-4 border border-yellow-200 border-opacity-20 backdrop-blur-xl rounded-lg min-h-20"
-  id="combo"
->
-  {#if combo.sequence.length === 0}
-    <p
-      class="mb-10 text-center absolute font-mono text-sm color-red-200 text-yellow-200 opacity-35"
-    >
-      Add notations using the buttons below…
-    </p>
-  {/if}
-  {#each combo.sequence as button}
-    {#if button === Glyph.and}
-      <div class="-ml-1.5 -mr-1.5">
-        <GlyphComponent shortCode="+" />
-      </div>
-    {:else}
-      <GlyphComponent shortCode={shortCodeForButton(button)} />
+<div class="border border-yellow-200 border-opacity-20 rounded-lg">
+  <div
+    class="flex flex-wrap items-start content-start gap-2.5 p-4 backdrop-blur-xl rounded-lg min-h-20"
+    id="combo"
+  >
+    {#if combo.sequence.length === 0}
+      <p
+        class="mb-10 text-center absolute font-mono text-sm color-red-200 text-yellow-200 opacity-35"
+      >
+        Add notations using the buttons below…
+      </p>
     {/if}
-  {/each}
+    {#each combo.sequence as button}
+      {#if button === Glyph.and}
+        <div class="-ml-1.5 -mr-1.5">
+          <GlyphComponent shortCode="+" />
+        </div>
+      {:else}
+        <GlyphComponent shortCode={shortCodeForButton(button)} />
+      {/if}
+    {/each}
+  </div>
 </div>
 
 <div class="flex gap-2 mt-2 justify-evenly">
