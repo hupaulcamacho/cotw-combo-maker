@@ -26,6 +26,7 @@ export enum Glyph {
   kick = "K",
   then = ">",
   or = "|",
+  revGuard = "RG",
   and = "+",
   hold = "Hold",
   anyDirection = "0",
@@ -102,6 +103,7 @@ const numberNotationMap: { [key in Glyph]: string } = {
   [Glyph.driveRush]: "DR",
   [Glyph.cancel]: "~",
   [Glyph.link]: ",",
+  [Glyph.revGuard]: "RG",
 };
 
 const shortCodeMap: { [key in Glyph]: string } = {
@@ -137,6 +139,7 @@ const shortCodeMap: { [key in Glyph]: string } = {
   [Glyph.driveRush]: "n",
   [Glyph.cancel]: "~",
   [Glyph.link]: ",",
+  [Glyph.revGuard]: "g",
 };
 
 const letterNotationMap: { [key in Glyph]: string } = {
@@ -172,6 +175,7 @@ const letterNotationMap: { [key in Glyph]: string } = {
   [Glyph.driveRush]: "DR",
   [Glyph.cancel]: "~",
   [Glyph.link]: ",",
+  [Glyph.revGuard]: "RG",
 };
 
 const unicodeNotationMap: { [key in Glyph]: string } = {
@@ -217,6 +221,7 @@ const unicodeNotationMap: { [key in Glyph]: string } = {
   [Glyph.driveRush]: "DR",
   [Glyph.cancel]: "~",
   [Glyph.link]: ",",
+  [Glyph.revGuard]: "RG",
 };
 
 export function numberNotationForButton(button: Glyph): string {

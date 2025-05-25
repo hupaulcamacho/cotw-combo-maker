@@ -8,18 +8,27 @@
   import Direction7 from "./Direction7.svelte";
   import Direction8 from "./Direction8.svelte";
   import Direction9 from "./Direction9.svelte";
-  import HeavyKick from "./HeavyKick.svelte";
-  import HeavyPunch from "./HeavyPunch.svelte";
+
+  import LightPunch from "../newglyphs/lightpunch.svelte";
+  import HeavyPunch from "../newglyphs/heavypunch.svelte";
+  import LightKick from "../newglyphs/lightkick.svelte";
+  import HeavyKick from "../newglyphs/heavykick.svelte";
+
   import Kick from "./Kick.svelte";
-  import LightKick from "./LightKick.svelte";
-  import LightPunch from "./LightPunch.svelte";
+  // import LightKick from "./LightKick.svelte";
   import MediumKick from "./MediumKick.svelte";
+  // import HeavyKick from "./HeavyKick.svelte";
+
+  import Punch from "./Punch.svelte";
+  // import LightPunch from "./LightPunch.svelte";
   import MediumPunch from "./MediumPunch.svelte";
+  // import HeavyPunch from "./HeavyPunch.svelte";
+
   import ModifierHold from "./ModifierHold.svelte";
-  import ModifierOr from "./ModifierOr.svelte";
+  // import ModifierOr from "./ModifierOr.svelte";
+  import ModifierOr from "../newglyphs/revguard.svelte"
   import ModifierPlus from "./ModifierPlus.svelte";
   import ModifierThen from "./ModifierThen.svelte";
-  import Punch from "./Punch.svelte";
   import { Glyph } from "@lib/types";
   import QuarterCircleBack from "./QuarterCircleBack.svelte";
   import QuarterCircleForward from "./QuarterCircleForward.svelte";

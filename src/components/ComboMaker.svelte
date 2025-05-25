@@ -11,6 +11,8 @@
   } from "@lib/types";
   import type { Combo } from "@lib/types";
   import GlyphComponent from "@components/glyphs/Glyph.svelte";
+
+  // directional buttons
   import Direction1 from "./glyphs/Direction1.svelte";
   import Direction2 from "./glyphs/Direction2.svelte";
   import Direction3 from "./glyphs/Direction3.svelte";
@@ -21,14 +23,24 @@
   import Direction8 from "./glyphs/Direction8.svelte";
   import Direction9 from "./glyphs/Direction9.svelte";
   import ModifierHold from "./glyphs/ModifierHold.svelte";
-  import LightPunch from "./glyphs/LightPunch.svelte";
+
+  // normal buttons
+  // import LightPunch from "./glyphs/LightPunch.svelte";
   import MediumPunch from "./glyphs/MediumPunch.svelte";
-  import HeavyPunch from "./glyphs/HeavyPunch.svelte";
+  // import HeavyPunch from "./glyphs/HeavyPunch.svelte";
   import Punch from "./glyphs/Punch.svelte";
-  import LightKick from "./glyphs/LightKick.svelte";
+  // import LightKick from "./glyphs/LightKick.svelte";
   import MediumKick from "./glyphs/MediumKick.svelte";
+  // import HeavyKick from "./glyphs/HeavyKick.svelte";
   import Kick from "./glyphs/Kick.svelte";
-  import HeavyKick from "./glyphs/HeavyKick.svelte";
+
+
+  import LightPunch from "./newglyphs/lightpunch.svelte";
+  import HeavyPunch from "./newglyphs/heavypunch.svelte";
+  import LightKick from "./newglyphs/lightkick.svelte";
+  import HeavyKick from "./newglyphs/heavykick.svelte";
+  import RevGuard from "./newglyphs/revguard.svelte";
+  
   import ModifierThen from "./glyphs/ModifierThen.svelte";
   import ModifierOr from "./glyphs/ModifierOr.svelte";
   import ModifierPlus from "./glyphs/ModifierPlus.svelte";
@@ -403,7 +415,7 @@
     </GameButton>
   </div>
   <!-- Middle -->
-  <div class="grid grid-cols-3 grid-rows-4 sm:grid-cols-4 sm:grid-rows-3 gap-4">
+  <div class="grid grid-cols-3 grid-rows-3 sm:grid-cols-3 sm:grid-rows-3 gap-4">
     <GameButton
       key="Q"
       onClickAction={() => add(Glyph.lightPunch)}
@@ -412,26 +424,22 @@
       <LightPunch />
     </GameButton>
     <GameButton
-      key="W"
-      onClickAction={() => add(Glyph.mediumPunch)}
-      title="Medium Punch | 中パンチ"
-    >
-      <MediumPunch />
-    </GameButton>
-    <GameButton
       key="E"
       onClickAction={() => add(Glyph.heavyPunch)}
       title="Heavy Punch | 強パンチ"
     >
       <HeavyPunch />
     </GameButton>
-    <GameButton
-      key="R"
-      onClickAction={() => add(Glyph.punch)}
-      title="Any Punch | パンチ"
-    >
-      <Punch />
-    </GameButton>
+    <div class="flex items-center justify-center">
+      <GameButton
+        key="P"
+        onClickAction={() => add(Glyph.or)}
+        includeBackground={true}
+        title="Alternative | 選択"
+      >
+        <RevGuard />
+      </GameButton>
+    </div>
     <GameButton
       key="A"
       onClickAction={() => add(Glyph.lightKick)}
@@ -440,25 +448,11 @@
       <LightKick />
     </GameButton>
     <GameButton
-      key="S"
-      onClickAction={() => add(Glyph.mediumKick)}
-      title="Medium Kick | 中キック"
-    >
-      <MediumKick />
-    </GameButton>
-    <GameButton
       key="D"
       onClickAction={() => add(Glyph.heavyKick)}
       title="Heavy Kick | 強キック"
     >
       <HeavyKick />
-    </GameButton>
-    <GameButton
-      key="F"
-      onClickAction={() => add(Glyph.kick)}
-      title="Any Kick | キック"
-    >
-      <Kick />
     </GameButton>
     <div class="flex items-center justify-center">
       <GameButton
@@ -490,19 +484,9 @@
         <ModifierHold />
       </GameButton>
     </div>
-    <div class="flex items-center justify-center">
-      <GameButton
-        key="P"
-        onClickAction={() => add(Glyph.or)}
-        includeBackground={true}
-        title="Alternative | 選択"
-      >
-        <ModifierOr />
-      </GameButton>
-    </div>
   </div>
   <!-- Right -->
-  <div class="grid grid-cols-3 grid-rows-3 gap-4">
+  <!-- <div class="grid grid-cols-3 grid-rows-3 gap-4">
     <GameButton
       key="T"
       onClickAction={() => add(Glyph.quarterCircleForward)}
@@ -572,7 +556,7 @@
         <DriveRush />
       </GameButton>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <div class="flex gap-2 sm:mt-0 mt-10 flex-col sm:flex-row">
