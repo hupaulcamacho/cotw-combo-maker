@@ -40,6 +40,8 @@ export enum Glyph {
   driveRush = "DR",
   cancel = "~",
   link = ",",
+  break = 'br',
+  feint = 'fe'
 }
 
 export const halfWidthSpace = "\u{2009}";
@@ -68,6 +70,9 @@ export const arrow8Unicode = "\u{2B06}\u{FE0F}";
 export const arrow9Unicode = "\u{2197}\u{FE0F}";
 export const plusUnicode = "\u{FF0B}";
 export const thenUnicode = "\u{2000}\u{232A}";
+export const revGuardUnicode = "\u0052\u0047";
+export const breakUnicode = "\u0062\u0072";
+export const feintUnicode = "\u0066\u0065";
 export const orUnicode = halfWidthSpace + "|" + halfWidthSpace;
 
 const numberNotationMap: { [key in Glyph]: string } = {
@@ -104,6 +109,8 @@ const numberNotationMap: { [key in Glyph]: string } = {
   [Glyph.cancel]: "~",
   [Glyph.link]: ",",
   [Glyph.revGuard]: "RG",
+  [Glyph.break]: "BR",
+  [Glyph.feint]: "FE"
 };
 
 const shortCodeMap: { [key in Glyph]: string } = {
@@ -139,7 +146,9 @@ const shortCodeMap: { [key in Glyph]: string } = {
   [Glyph.driveRush]: "n",
   [Glyph.cancel]: "~",
   [Glyph.link]: ",",
-  [Glyph.revGuard]: "g",
+  [Glyph.revGuard]: "rg",
+  [Glyph.break]: "br",
+  [Glyph.feint]: "fe"
 };
 
 const letterNotationMap: { [key in Glyph]: string } = {
@@ -176,6 +185,8 @@ const letterNotationMap: { [key in Glyph]: string } = {
   [Glyph.cancel]: "~",
   [Glyph.link]: ",",
   [Glyph.revGuard]: "RG",
+  [Glyph.break]: "BR",
+  [Glyph.feint]: "FE"
 };
 
 const unicodeNotationMap: { [key in Glyph]: string } = {
@@ -221,7 +232,9 @@ const unicodeNotationMap: { [key in Glyph]: string } = {
   [Glyph.driveRush]: "DR",
   [Glyph.cancel]: "~",
   [Glyph.link]: ",",
-  [Glyph.revGuard]: "RG",
+  [Glyph.revGuard]: revGuardUnicode,
+  [Glyph.break]: breakUnicode,
+  [Glyph.feint]: feintUnicode
 };
 
 export function numberNotationForButton(button: Glyph): string {

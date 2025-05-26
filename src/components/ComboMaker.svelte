@@ -40,6 +40,8 @@
   import LightKick from "./newglyphs/lightkick.svelte";
   import HeavyKick from "./newglyphs/heavykick.svelte";
   import RevGuard from "./newglyphs/revguard.svelte";
+  import Break from "./newglyphs/break.svelte";
+  import Feint from "./newglyphs/feint.svelte";
   
   import ModifierThen from "./glyphs/ModifierThen.svelte";
   import ModifierOr from "./glyphs/ModifierOr.svelte";
@@ -188,6 +190,15 @@
         break;
       case shortCodeForButton(Glyph.cancel):
         add(Glyph.cancel);
+        break;
+      case shortCodeForButton(Glyph.revGuard):
+        add(Glyph.revGuard);
+        break;
+      case shortCodeForButton(Glyph.break):
+        add(Glyph.break);
+        break;
+      case shortCodeForButton(Glyph.feint):
+        add(Glyph.feint);
         break;
     }
   }
@@ -346,10 +357,10 @@
 
 <div
   id="buttons"
-  class="flex my-8 justify-around gap-5 flex-wrap p-4 backdrop-blur-xl rounded-lg"
+  class="flex my-8 justify-around gap-2 flex-wrap p-4 backdrop-blur-xl rounded-lg"
 >
   <!-- Left -->
-  <div class="grid grid-cols-3 grid-rows-3 gap-4">
+  <div class="grid grid-cols-3 grid-rows-3 gap-5">
     <GameButton
       key="7"
       onClickAction={() => add(Glyph.upBack)}
@@ -415,7 +426,7 @@
     </GameButton>
   </div>
   <!-- Middle -->
-  <div class="grid grid-cols-3 grid-rows-3 sm:grid-cols-3 sm:grid-rows-3 gap-4">
+  <div class="grid grid-cols-5 grid-rows-3 sm:grid-cols-5 sm:grid-rows-3 gap-4">
     <GameButton
       key="Q"
       onClickAction={() => add(Glyph.lightPunch)}
@@ -433,11 +444,31 @@
     <div class="flex items-center justify-center">
       <GameButton
         key="P"
-        onClickAction={() => add(Glyph.or)}
+        onClickAction={() => add(Glyph.revGuard)}
         includeBackground={true}
-        title="Alternative | 選択"
+        title="Rev Guard | 選択"
       >
         <RevGuard />
+      </GameButton>
+    </div>
+    <div class="flex items-center justify-center">
+      <GameButton
+        key="O"
+        onClickAction={() => add(Glyph.break)}
+        includeBackground={true}
+        title="Break | チャージ"
+      >
+        <Break/>
+      </GameButton>
+    </div>
+    <div class="flex items-center justify-center">
+      <GameButton
+        key="+"
+        onClickAction={() => add(Glyph.and)}
+        includeBackground={true}
+        title="Simultaneous (+) | 同時入力"
+      >
+        <ModifierPlus />
       </GameButton>
     </div>
     <GameButton
@@ -456,12 +487,22 @@
     </GameButton>
     <div class="flex items-center justify-center">
       <GameButton
-        key="+"
-        onClickAction={() => add(Glyph.and)}
+        key="O"
+        onClickAction={() => add(Glyph.hold)}
         includeBackground={true}
-        title="Simultaneous (+) | 同時入力"
+        title="Hold | チャージ"
       >
-        <ModifierPlus />
+        <ModifierHold />
+      </GameButton>
+    </div>
+    <div class="flex items-center justify-center">
+      <GameButton
+        key="O"
+        onClickAction={() => add(Glyph.feint)}
+        includeBackground={true}
+        title="Feint | チャージ"
+      >
+        <Feint/>
       </GameButton>
     </div>
     <div class="flex items-center justify-center">
@@ -472,16 +513,6 @@
         title="Sequential (>) | 連続入力"
       >
         <ModifierThen />
-      </GameButton>
-    </div>
-    <div class="flex items-center justify-center">
-      <GameButton
-        key="O"
-        onClickAction={() => add(Glyph.hold)}
-        includeBackground={true}
-        title="Hold | チャージ"
-      >
-        <ModifierHold />
       </GameButton>
     </div>
   </div>

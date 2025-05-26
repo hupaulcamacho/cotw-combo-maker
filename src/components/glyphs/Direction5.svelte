@@ -1,7 +1,7 @@
 <svg
   viewBox="0 0 128 128"
   xmlns="http://www.w3.org/2000/svg"
-  class="h-8 sm:h-10"
+  class="h-8 sm:h-8"
 >
   <g fill="none" fill-rule="evenodd" transform="translate(12.5 12.5)">
     <path

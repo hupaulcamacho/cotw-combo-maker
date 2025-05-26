@@ -40,6 +40,9 @@
   import DriveImpact from "./DriveImpact.svelte";
   import DriveRush from "./DriveRush.svelte";
   import { shortCodeForButton } from "@lib/types";
+  import RevGuard from "../newglyphs/revguard.svelte";
+  import Break from "../newglyphs/break.svelte";
+  import Feint from "../newglyphs/feint.svelte";
 
   export let shortCode;
 </script>
@@ -104,6 +107,12 @@
   <DriveImpact />
 {:else if shortCode === shortCodeForButton(Glyph.driveRush)}
   <DriveRush />
+{:else if shortCode === shortCodeForButton(Glyph.revGuard)}
+  <RevGuard />
+{:else if shortCode === shortCodeForButton(Glyph.break)}
+  <Break />
+{:else if shortCode === shortCodeForButton(Glyph.feint)}
+  <Feint />
 {:else if shortCode === shortCodeForButton(Glyph.link)}
   <div class="text-gray-400 text-4xl">{shortCode}</div>
 {:else if shortCode === shortCodeForButton(Glyph.cancel)}
