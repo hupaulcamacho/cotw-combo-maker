@@ -18,5 +18,5 @@
     />
   {/if}
   <slot />
-  <Key {key} />
+  <!-- <Key {key} /> -->
 </button>
